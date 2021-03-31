@@ -4,5 +4,14 @@
     <string name="iniciarGoogle">Inicia sesion con Google</string>
     <string name="iniciarEmail">Inicia sesion con email</string>
     <string name="noTienesCuenta">¿No tienes cuenta?</string>
-    <string name="registro">¡Registrate!</string>
+    <string name="registro"><u>¡Registrate!</u></string>
+    <string name="nombreCompleto">Nombre Completo</string>
+    <string name="telefono">Teléfono</string>
+    <string name="Registrarse">Registrarse</string>
+    <string name="txtEmail">Email</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="repiteContrasenia">Repite contraseña</string>
+    <string name="icono">Icono</string>
+    <string name="logo">Logo</string>
+    <string name="nickname">Nickname</string>
 </resources>

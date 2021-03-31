@@ -6,4 +6,12 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="estiloEditText">
+
+        <item name="android:backgroundTint">@color/amarilloClaro</item>
+        <item name="android:textColor">@color/amarilloClaro</item>
+        <item name="android:textColorHint">@color/amarilloClaro</item>
+        <item name="backgroundTint">@color/amarilloClaro</item>
+    </style>
+
 </resources>

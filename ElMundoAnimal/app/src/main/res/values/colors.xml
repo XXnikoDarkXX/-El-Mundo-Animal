@@ -11,4 +11,5 @@
     <color name="rojo">#FF80AB</color>
     <color name="amarilloClaro">#FFFF5D</color>
     <color name="rojoOscuro">#850B1C</color>
+    <color name="rojoCarmin">#FC000D</color>
 </resources>
