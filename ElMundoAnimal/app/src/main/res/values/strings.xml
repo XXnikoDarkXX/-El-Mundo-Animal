@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">El Mundo Animal</string>
+
+    <string name="iniciarGoogle">Inicia sesion con Google</string>
+    <string name="iniciarEmail">Inicia sesion con email</string>
+    <string name="noTienesCuenta">¿No tienes cuenta?</string>
+    <string name="registro">¡Registrate!</string>
 </resources>
