@@ -12,4 +12,11 @@
     <color name="amarilloClaro">#FFFF5D</color>
     <color name="rojoOscuro">#850B1C</color>
     <color name="rojoCarmin">#FC000D</color>
+
+
+    <color name="verdeOscuro">#062925</color>
+    <color name="verdeNormal">#044a42</color>
+    <color name="verdeClaro">#3a9188</color>
+    <color name="verdeClaro2">#b8e1dd</color>
+
 </resources>

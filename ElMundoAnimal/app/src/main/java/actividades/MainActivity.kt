@@ -1,7 +1,5 @@
-package com.nicolasfernandez.elmundoanimal
+package actividades
 
-import actividades.LoginEmail
-import actividades.Registro
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +13,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.RuntimeExecutionException
 
 import com.google.firebase.auth.GoogleAuthProvider
+import com.nicolasfernandez.elmundoanimal.R
 
 import constantes.Database.Companion.firebaseAuth
 

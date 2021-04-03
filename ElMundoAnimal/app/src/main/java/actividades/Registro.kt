@@ -9,7 +9,6 @@ import android.widget.Toast
 import clases.Usuario
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.FirebaseAuth
-import com.nicolasfernandez.elmundoanimal.MainActivity
 import com.nicolasfernandez.elmundoanimal.R
 import constantes.Database.Companion.firebaseAuth
 import constantes.Database.Companion.firebaseDB

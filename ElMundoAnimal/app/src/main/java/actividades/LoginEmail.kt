@@ -1,5 +1,6 @@
 package actividades
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -22,6 +23,7 @@ class LoginEmail : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(contexto,"Usuario logeado correctamente",Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this, Principal::class.java))
                 }else{
                     Toast.makeText(contexto,"Has especificado una contraseña o email incorrecto",Toast.LENGTH_LONG).show()
                 }
