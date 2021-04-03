@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "365537516760",
+    "project_id": "el-mundo-animal-b0522",
+    "storage_bucket": "el-mundo-animal-b0522.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:365537516760:android:9ee08314dfc32ef9a48bad",
+        "android_client_info": {
+          "package_name": "com.nicolasfernandez.elmundoanimal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "365537516760-o045mide23gu6dsq8pef9up1avtsjnfj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBwAGCRnhego8CP1uq5t8tRqz3VDrVkOeE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "365537516760-o045mide23gu6dsq8pef9up1avtsjnfj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
