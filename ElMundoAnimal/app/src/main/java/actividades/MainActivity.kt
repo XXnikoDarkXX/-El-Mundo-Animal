@@ -11,6 +11,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.RuntimeExecutionException
+import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.auth.GoogleAuthProvider
 import com.nicolasfernandez.elmundoanimal.R
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        verificarLoginUsuario()
     }
 
     fun irRegistro(view: View) {
@@ -80,6 +82,18 @@ class MainActivity : AppCompatActivity() {
     fun irALogInEmail(view: View) {
 
         startActivity(Intent(this, LoginEmail::class.java))
+
+    }
+
+    /**
+     * Funcion para cuando abra la app verifique que esta logueado
+     */
+    fun verificarLoginUsuario(){
+        val currentUser = firebaseAuth.currentUser
+        if(currentUser != null){
+            startActivity(Intent(this, Principal::class.java))
+        Toast.makeText(this,"Bienvenido "+currentUser.email,Toast.LENGTH_LONG).show()
+        }
 
     }
 }

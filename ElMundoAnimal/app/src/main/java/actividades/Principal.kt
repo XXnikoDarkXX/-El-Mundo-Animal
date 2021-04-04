@@ -5,7 +5,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nicolasfernandez.elmundoanimal.R
-import fragments.SongsFragment
+import fragments.Inicio
+import java.lang.reflect.Array.newInstance
 
 class Principal : AppCompatActivity() {
 
@@ -17,19 +18,21 @@ class Principal : AppCompatActivity() {
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
 
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        val inicio = Inicio.newInstance()
+        openFragment(inicio)
     }
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
-            R.id.navigation_songs -> {
-                val songsFragment = SongsFragment.newInstance()
-                openFragment(songsFragment)
+            R.id.navigationInicio -> {
+                val inicio = Inicio.newInstance()
+                openFragment(inicio)
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_albums -> {
+            R.id.navigationJugar -> {
 
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_artists -> {
+            R.id.navigationPerfil -> {
 
                 return@OnNavigationItemSelectedListener true
             }
