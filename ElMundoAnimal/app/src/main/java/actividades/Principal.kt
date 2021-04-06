@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nicolasfernandez.elmundoanimal.R
+import fragments.FragmentJugar
 import fragments.Inicio
 import java.lang.reflect.Array.newInstance
 
@@ -34,7 +35,8 @@ class Principal : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigationJugar -> {
-
+                val fragmentJuego = FragmentJugar.newInstance()
+                openFragment(fragmentJuego)
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigationPerfil -> {

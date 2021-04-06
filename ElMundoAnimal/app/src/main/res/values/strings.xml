@@ -22,5 +22,18 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="aniadirAnimales">Añadir animales</string>
     <string name="tiposAnimales">Seccion de tipos de Animales</string>
+    <string name="ayuda">Ayuda</string>
+    <string name="irAyuda">Ir a Ayuda</string>
+    <string name="textoBuscar">Puedes buscar una ficha o video de un animal</string>
+    <string name="puntuacion">Puntuacion</string>
+    <string name="quieresJugar">¿Quieres jugar al Trivia Animal?</string>
+    <string name="topRanking">Top Ranking</string>
+    <string name="imagen">Imagen</string>
+    <string name="tuNickname">nickname</string>
+    <string name="tuPuntacion">0 pts</string>
+    <string name="tuNombre">Hola,</string>
+    <string name="informacionJuego">Informacion del juego</string>
+    <string name="irInformacionJuego">Ir a la información del juego</string>
+
 
 </resources>

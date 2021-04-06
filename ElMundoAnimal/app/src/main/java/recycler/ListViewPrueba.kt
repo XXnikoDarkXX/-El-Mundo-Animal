@@ -13,10 +13,7 @@ import com.nicolasfernandez.elmundoanimal.R
 import fragments.Inicio
 
 
-class ListViewPrueba(
-    val fragmentActivity: Inicio,
-    val datos: ArrayList<String>
-) : BaseAdapter() {
+class ListViewPrueba(val fragmentActivity: Inicio,val datos: ArrayList<String>) : BaseAdapter() {
     override fun getCount(): Int {
         return datos.size
     }
@@ -26,7 +23,7 @@ class ListViewPrueba(
     }
 
     override fun getItemId(position: Int): Long {
-        TODO("Not yet implemented")
+      return position.toLong()
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
