@@ -21,7 +21,7 @@
     <string name="buscar">Buscar</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="aniadirAnimales">Añadir animales</string>
-    <string name="tiposAnimales">Seccion de tipos de Animales</string>
+    <string name="tiposAnimales">Tipos de Animales</string>
     <string name="ayuda">Ayuda</string>
     <string name="irAyuda">Ir a Ayuda</string>
     <string name="textoBuscar">Puedes buscar una ficha o video de un animal</string>

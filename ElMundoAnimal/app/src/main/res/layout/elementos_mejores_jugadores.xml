@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
 
 
     >
 
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="6dp"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/verdeClaro2"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="30dp"
+        app:cardBackgroundColor="@color/verdeClaro2"
+        app:cardCornerRadius="6dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -27,26 +27,26 @@
             android:orientation="vertical">
 
 
-
             <TextView
                 android:id="@+id/txtnickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
                 android:layout_weight="1"
-                android:textStyle="bold"
+                android:padding="4dp"
+                android:text="@string/nickname"
                 android:textSize="16sp"
-                android:text="@string/nickname" />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/txtPuntuacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="4dp"
-                android:textStyle="bold"
-                android:textSize="16sp"
                 android:layout_weight="1"
-                android:text="@string/puntuacion" />
+                android:padding="4dp"
+                android:text="@string/puntuacion"
+                android:textColor="@color/verdeClaro"
+                android:textSize="16sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

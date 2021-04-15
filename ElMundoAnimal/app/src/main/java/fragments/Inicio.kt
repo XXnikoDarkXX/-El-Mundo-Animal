@@ -1,5 +1,7 @@
 package fragments
 
+import actividades.PurebaConsultaFirebase
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +43,8 @@ class Inicio : Fragment() {
 
             Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
 
+            val intent = Intent(activity, PurebaConsultaFirebase::class.java)
+            startActivity(intent)
 
         })
 
@@ -51,8 +55,8 @@ class Inicio : Fragment() {
         datos.add("peces")
         datos.add("reptiles")
 
-        //Con el listView lo hemos conseguido siii!!
-        val adapter:ListViewPrueba= ListViewPrueba(this,datos)
+        //Con el listView
+        val adapter:ListViewPrueba= ListViewPrueba(this, datos)
         val lista:ListView = view.findViewById(R.id.lista)
 
         lista.adapter=adapter

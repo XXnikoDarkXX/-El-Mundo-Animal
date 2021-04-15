@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ElMundoAnimal">
-        <activity android:name="actividades.Principal"></activity>
+        <activity android:name="actividades.PurebaConsultaFirebase"></activity>
+        <activity android:name="actividades.Principal" />
         <activity android:name="actividades.LoginEmail" />
         <activity android:name="actividades.Registro" />
         <activity android:name="actividades.MainActivity">
