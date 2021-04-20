@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nicolasfernandez.elmundoanimal.R
 import fragments.FragmentJugar
+import fragments.FragmentPerfil
 import fragments.Inicio
 import java.lang.reflect.Array.newInstance
 
@@ -40,7 +41,8 @@ class Principal : AppCompatActivity() {
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigationPerfil -> {
-
+                val fragmentPerfil= FragmentPerfil.newInstance()
+                openFragment(fragmentPerfil)
                 return@OnNavigationItemSelectedListener true
             }
         }

@@ -34,6 +34,9 @@
     <string name="tuNombre">Hola,</string>
     <string name="informacionJuego">Informacion del juego</string>
     <string name="irInformacionJuego">Ir a la información del juego</string>
+    <string name="cambioConstrasenia">Cambiar Contraseña</string>
+    <string name="irContacto">Ir a Contacto!!</string>
+    <string name="finalizarSesion">Finalizar Sesion</string>
 
 
 </resources>

@@ -53,9 +53,9 @@ class FragmentJugar : Fragment() {
             .addOnSuccessListener { result ->
                 for (document in result) {
 
-                    val articul= document.toObject(Usuario::class.java)
+                    val user= document.toObject(Usuario::class.java)
 
-                    jugadores.add(articul)
+                    jugadores.add(user)
 
                 }
 
