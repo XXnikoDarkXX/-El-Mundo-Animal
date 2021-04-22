@@ -83,7 +83,9 @@ class FragmentPerfil : Fragment() {
 
     }
 
-
+    /**
+     * Funcion para recoger los datos de un usuario de la bbdd
+     */
     fun traerUsuario(){
 
         val docRef = firebaseDB.collection("usuarios").document(firebaseAuth.currentUser.email.toString())

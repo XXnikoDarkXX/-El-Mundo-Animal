@@ -1,22 +1,16 @@
 package fragments
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.TextView
-import android.widget.Toast
 import clases.Usuario
-import com.google.firebase.firestore.FirebaseFirestore
 import com.nicolasfernandez.elmundoanimal.R
-import constantes.Database
 import constantes.Database.Companion.firebaseAuth
 import constantes.Database.Companion.firebaseDB
-import recycler.ListViewPrueba
 import recycler.ListViewRankingTop
 
 
@@ -58,8 +52,8 @@ class FragmentJugar : Fragment() {
                     jugadores.add(user)
 
                 }
-
-                val adapter: ListViewRankingTop = ListViewRankingTop(this,jugadores)
+                val array= rankingTop5(jugadores)
+                val adapter: ListViewRankingTop = ListViewRankingTop(this,array)
                 val lista: ListView = view.findViewById(R.id.listaMejoresJugadores)
 
                 lista.adapter=adapter
@@ -117,5 +111,51 @@ class FragmentJugar : Fragment() {
         }
     }
 
+
+    fun rankingTop5(jugadores: ArrayList<Usuario>):Array<Usuario> {
+        val array:Array<Usuario>  = Array(5) { i -> Usuario() }
+
+        for (i in 0..jugadores.size - 1) {
+
+            for (j in 0..jugadores.size - 1) {
+                if (!(j == jugadores.size)) {
+                    if (jugadores.get(i).ranking > jugadores.get(j).ranking) {
+                        comprobarArray5(array, jugadores.get(i))
+                        break
+                    }
+                }
+
+            }
+        }
+        return array
+    }
+
+    /**
+     * Funcion para comprobar si jugador tiene mayor puntuacion que los jugadores del array
+     * @param jugador jugador que vamos a comprobar que tenga mas puntuacion que los jugadores del array
+     * @param array de Usuario donde contenemos a los jugadores con mayor ranking en el momento)
+     */
+    fun comprobarArray5(array: Array<Usuario>,jugador :Usuario){
+
+
+        for (i  in 0.. array.size-1){
+
+            if (array[i].nombre.equals("")){//si es null el espacio del array metemos al jugador
+                array[i.toInt()]=jugador
+                break
+            }
+            //Comprobamos que jugador no este ya en el array y si no lo esta lo metemos en caso de que tenga mayor puntuacion
+            //que algun jugador del array
+
+            if (jugador.ranking>array[i].ranking){
+
+                comprobarArray5(array,array[i.toInt()])
+                array[i.toInt()]= jugador
+                break
+            }
+
+
+        }
+    }
 
 }

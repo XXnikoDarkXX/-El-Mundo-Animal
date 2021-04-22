@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import clases.Usuario
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.auth.GoogleAuthProvider
 import com.nicolasfernandez.elmundoanimal.R
+import constantes.Database
 
 import constantes.Database.Companion.firebaseAuth
 
@@ -27,6 +29,9 @@ class MainActivity : AppCompatActivity() {
         verificarLoginUsuario()
     }
 
+    /**
+     * Funcion para ir a la actividad de Registro
+     */
     fun irRegistro(view: View) {
 
 
@@ -79,6 +84,9 @@ class MainActivity : AppCompatActivity() {
                 }
     }
 
+    /**
+     * Funcion para ir a la actividad de Login Email
+     */
     fun irALogInEmail(view: View) {
 
         startActivity(Intent(this, LoginEmail::class.java))
@@ -89,11 +97,23 @@ class MainActivity : AppCompatActivity() {
      * Funcion para cuando abra la app verifique que esta logueado
      */
     fun verificarLoginUsuario(){
+        /*
         val currentUser = firebaseAuth.currentUser
         if(currentUser != null){
             startActivity(Intent(this, Principal::class.java))
-        Toast.makeText(this,"Bienvenido "+currentUser.email,Toast.LENGTH_LONG).show()
-        }
 
+        }
+        */
+        if(firebaseAuth.currentUser!=null) {
+            val docRef = Database.firebaseDB.collection("usuarios")
+                .document(firebaseAuth.currentUser.email.toString())
+            docRef.get().addOnSuccessListener { documentSnapshot ->
+                val user = documentSnapshot.toObject(Usuario::class.java)
+                if (user != null) {
+                    Toast.makeText(this, "Bienvenido " + user.nombre, Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this, Principal::class.java))
+                }
+            }
+        }
     }
 }

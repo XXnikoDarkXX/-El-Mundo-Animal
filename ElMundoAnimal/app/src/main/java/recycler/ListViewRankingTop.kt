@@ -5,12 +5,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import android.widget.Toast
 import clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
 import fragments.FragmentJugar
 
-class ListViewRankingTop(val fragmentActivity: FragmentJugar,val datos: ArrayList<Usuario>) : BaseAdapter() {
+    class ListViewRankingTop(val fragmentActivity: FragmentJugar, val datos: Array<Usuario>) : BaseAdapter() {
     override fun getCount(): Int {
        return datos.size
     }
@@ -32,7 +31,8 @@ class ListViewRankingTop(val fragmentActivity: FragmentJugar,val datos: ArrayLis
         val nickname:TextView =vista.findViewById<TextView>(R.id.txtnickname)
         nickname.text=datos.get(position).nickname
         val txtPuntuacion:TextView=vista.findViewById<TextView>(R.id.txtPuntuacion)
-        txtPuntuacion.text=datos.get(position).ranking.toString()+" puntos"
+        val posicion:Byte = (1 + position).toByte()
+        txtPuntuacion.text=datos.get(position).ranking.toString()+" puntos -->"+posicion+" Posición"
 
         return vista
     }

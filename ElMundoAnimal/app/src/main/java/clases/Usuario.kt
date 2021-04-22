@@ -1,6 +1,6 @@
 package clases
 
-class Usuario (val nombre:String, val nickname:String,val email:String, val contrasenia:String,val ranking:Int){
+class Usuario (var nombre:String, var nickname:String,val email:String, var contrasenia:String,var ranking:Int){
 
 
     constructor():this("","","","",0)

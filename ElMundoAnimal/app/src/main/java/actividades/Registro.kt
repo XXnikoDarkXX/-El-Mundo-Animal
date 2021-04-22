@@ -55,7 +55,7 @@ class Registro : AppCompatActivity() {
                                             Toast.makeText( contexto,"usuario no insertado en la colleccion", Toast.LENGTH_LONG).show()
                                         }
                                     })
-                                startActivity(Intent(this, MainActivity::class.java))
+                              startActivity(Intent(this, MainActivity::class.java))
 
 
                             } else {
@@ -69,6 +69,9 @@ class Registro : AppCompatActivity() {
 
 
 
+
+            }else{
+                Toast.makeText(contexto,"Contraseñas no coinciden",Toast.LENGTH_LONG).show()
 
             }
 
