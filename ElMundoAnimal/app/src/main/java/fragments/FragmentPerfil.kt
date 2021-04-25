@@ -1,5 +1,6 @@
 package fragments
 
+import actividades.CambiarContrasenia
 import actividades.MainActivity
 import actividades.PurebaConsultaFirebase
 import android.content.Intent
@@ -8,10 +9,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.cardview.widget.CardView
 import clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
@@ -75,6 +73,12 @@ class FragmentPerfil : Fragment() {
 
 
 
+        val imgCambioPass:ImageView = view.findViewById<ImageView>(R.id.imgCambioPass)
+        imgCambioPass.setOnClickListener(View.OnClickListener {
+            val intent = Intent(activity, CambiarContrasenia::class.java)
+            startActivity(intent)
+
+        })
         return view
     }
 

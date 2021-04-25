@@ -38,6 +38,10 @@
     <string name="irContacto">Ir a Contacto!!</string>
     <string name="finalizarSesion">Finalizar Sesion</string>
     <string name="cargando">Cargando...</string>
+    <string name="contraseniaActual">Contraseña Actual</string>
+    <string name="tituloCambiarContrasenia">A continuación puedes cambiar la contraseña</string>
+    <string name="nuevaContrasenia">Nueva Contraseña</string>
+    <string name="btnCambiar">Cambiar</string>
 
 
 </resources>

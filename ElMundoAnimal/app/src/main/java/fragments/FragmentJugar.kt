@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ListView
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
 import constantes.Database.Companion.firebaseAuth
@@ -21,6 +23,11 @@ import recycler.ListViewRankingTop
  */
 class FragmentJugar : Fragment() {
 
+    lateinit var cardView2: CardView
+    lateinit var cardView4: CardView
+    lateinit var cardView5: CardView
+    lateinit var cardView6: CardView
+    lateinit var pgCarga2:ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +45,14 @@ class FragmentJugar : Fragment() {
 
 
 
-
+        cardView2 = view.findViewById<CardView>(R.id.cardView2)
+        cardView4= view.findViewById<CardView>(R.id.cardView4)
+        cardView5= view.findViewById<CardView>(R.id.cardView5)
+        cardView6= view.findViewById<CardView>(R.id.cardView5)
+        cardView2.visibility=View.GONE
+        cardView4.visibility=View.GONE
+        cardView5.visibility=View.GONE
+        cardView6.visibility=View.GONE
         //ListView para coger los primeros 5 usuarios
 
         var jugadores: ArrayList<Usuario> = ArrayList<Usuario>()
@@ -58,6 +72,12 @@ class FragmentJugar : Fragment() {
 
                 lista.adapter=adapter
                 puntuacionJugador( view, jugadores)
+                pgCarga2=view.findViewById(R.id.pgCarga2)
+                pgCarga2.visibility=View.GONE
+                cardView2.visibility=View.VISIBLE
+                cardView4.visibility=View.VISIBLE
+                cardView5.visibility=View.VISIBLE
+                cardView6.visibility=View.VISIBLE
             }
             .addOnFailureListener { exception ->
                 //Log.d(TAG, "Error getting documents: ", exception)
