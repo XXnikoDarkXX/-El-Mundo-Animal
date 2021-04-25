@@ -4,6 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import clases.Usuario
@@ -19,10 +21,15 @@ import com.nicolasfernandez.elmundoanimal.R
 import constantes.Database
 
 import constantes.Database.Companion.firebaseAuth
+import org.w3c.dom.Text
 
 
 class MainActivity : AppCompatActivity() {
     private val GOOGLE_SIGN_IN = 123 // Request code for signing in with Google
+    private val btnGoogle:Button by lazy { findViewById<Button>(R.id.inicioGoogle) }
+    private val btnEmail:Button by lazy { findViewById<Button>(R.id.inicioEmail) }
+    private val txtInfo:TextView by lazy { findViewById<TextView>(R.id.txtCuenta) }
+    private val txtRegistro:TextView by lazy { findViewById<TextView>(R.id.txtRegistro) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -97,23 +104,25 @@ class MainActivity : AppCompatActivity() {
      * Funcion para cuando abra la app verifique que esta logueado
      */
     fun verificarLoginUsuario(){
-        /*
-        val currentUser = firebaseAuth.currentUser
-        if(currentUser != null){
-            startActivity(Intent(this, Principal::class.java))
 
-        }
-        */
         if(firebaseAuth.currentUser!=null) {
             val docRef = Database.firebaseDB.collection("usuarios")
                 .document(firebaseAuth.currentUser.email.toString())
             docRef.get().addOnSuccessListener { documentSnapshot ->
                 val user = documentSnapshot.toObject(Usuario::class.java)
                 if (user != null) {
-                    Toast.makeText(this, "Bienvenido " + user.nombre, Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, Principal::class.java))
+                    val actividadCarga:Intent= Intent(this,Carga::class.java)
+                    var bundle:Bundle=Bundle()//iniciamos la variable
+                    bundle.putString("Principal","Principal")
+                    actividadCarga.putExtras(bundle)
+                    this.startActivity(actividadCarga)
                 }
             }
+        }else{
+            btnGoogle.visibility=View.VISIBLE
+            btnEmail.visibility=View.VISIBLE
+            txtInfo.visibility=View.VISIBLE
+            txtRegistro.visibility=View.VISIBLE
         }
     }
 }

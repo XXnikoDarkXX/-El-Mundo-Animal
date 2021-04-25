@@ -7,6 +7,7 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView7"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginStart="10dp"
@@ -74,6 +75,7 @@
         android:id="@+id/cardView8"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -119,7 +121,7 @@
         android:id="@+id/cardView9"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-
+        android:visibility="gone"
         android:layout_marginStart="10dp"
 
         android:layout_marginTop="10dp"
@@ -161,6 +163,7 @@
         android:id="@+id/cardView10"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:visibility="gone"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
@@ -198,5 +201,15 @@
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <ProgressBar
+        android:id="@+id/pgCarga"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

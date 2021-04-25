@@ -36,7 +36,9 @@ class Inicio : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
+
+       val view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
+
         btnPrueba = view.findViewById(R.id.btnPrueba) as Button
 
         btnPrueba.setOnClickListener(View.OnClickListener {

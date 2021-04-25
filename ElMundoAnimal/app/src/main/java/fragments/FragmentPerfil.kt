@@ -9,8 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
 import constantes.Database.Companion.firebaseAuth
@@ -30,7 +32,11 @@ class FragmentPerfil : Fragment() {
     lateinit var txtNicknamePerfil:TextView
     lateinit var txtEmailPerfil: TextView
     lateinit var usuario:Usuario
-
+    lateinit var cardView7:CardView
+    lateinit var cardView8:CardView
+    lateinit var cardView9:CardView
+    lateinit var cardView10:CardView
+    lateinit var pgCarga:ProgressBar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -42,12 +48,22 @@ class FragmentPerfil : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-
         val view: View = inflater.inflate(R.layout.fragment_perfil, container, false)
+
+        cardView7=view.findViewById<CardView>(R.id.cardView7)
+        cardView8=view.findViewById<CardView>(R.id.cardView8)
+        cardView9=view.findViewById<CardView>(R.id.cardView9)
+        cardView10=view.findViewById<CardView>(R.id.cardView10)
+        pgCarga=view.findViewById<ProgressBar>(R.id.pgCarga)
+        pgCarga.visibility=View.VISIBLE
+        cardView7.visibility=View.GONE
+        cardView8.visibility=View.GONE
+        cardView9.visibility=View.GONE
+        cardView10.visibility=View.GONE
         txtNombrePerfil= view.findViewById<TextView>(R.id.txtNombreUsuario)
         txtNicknamePerfil=view.findViewById<TextView>(R.id.txtNicknamePerfil)
         txtEmailPerfil=view.findViewById<TextView>(R.id.txtEmailPerfil)
+
         traerUsuario()
         val btnFinalizarSession:Button = view.findViewById<Button>(R.id.btnFinalizarSesion)
         btnFinalizarSession.setOnClickListener {
@@ -56,6 +72,7 @@ class FragmentPerfil : Fragment() {
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
         }
+
 
 
         return view
@@ -96,6 +113,11 @@ class FragmentPerfil : Fragment() {
                 txtNicknamePerfil.text="Nickname: "+user.nickname
                 txtEmailPerfil.text="Email: "+ user.email
                 usuario=user
+                  pgCarga.visibility=View.GONE
+                 cardView7.visibility=View.VISIBLE
+                 cardView8.visibility=View.VISIBLE
+                 cardView9.visibility=View.VISIBLE
+                 cardView10.visibility=View.VISIBLE
             }
         }
 

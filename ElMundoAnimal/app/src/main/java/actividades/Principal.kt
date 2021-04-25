@@ -6,8 +6,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import clases.Usuario
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nicolasfernandez.elmundoanimal.R
+import constantes.Database
+import constantes.Database.Companion.firebaseAuth
 import fragments.FragmentJugar
 import fragments.FragmentPerfil
 import fragments.Inicio
@@ -19,6 +22,7 @@ class Principal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal)
 
+        traerNombre()
 
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
 
@@ -57,6 +61,22 @@ class Principal : AppCompatActivity() {
         transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+
+    /**
+     * Funcion para recoger el nombre de labdd
+     */
+    fun traerNombre(){
+
+        val docRef = Database.firebaseDB.collection("usuarios").document(firebaseAuth.currentUser.email.toString())
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            val user = documentSnapshot.toObject(Usuario::class.java)
+            if (user != null) {
+                Toast.makeText(this,"Bienvenido"+user.nombre,Toast.LENGTH_LONG).show()
+            }
+        }
+
     }
 
 }

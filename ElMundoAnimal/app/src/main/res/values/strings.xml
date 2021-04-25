@@ -37,6 +37,7 @@
     <string name="cambioConstrasenia">Cambiar Contraseña</string>
     <string name="irContacto">Ir a Contacto!!</string>
     <string name="finalizarSesion">Finalizar Sesion</string>
+    <string name="cargando">Cargando...</string>
 
 
 </resources>

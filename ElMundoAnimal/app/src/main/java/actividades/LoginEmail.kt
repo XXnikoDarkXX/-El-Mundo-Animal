@@ -23,7 +23,12 @@ class LoginEmail : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     Toast.makeText(contexto,"Usuario logeado correctamente",Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, Principal::class.java))
+
+                    val actividadCarga:Intent= Intent(this,Carga::class.java)
+                    var bundle:Bundle=Bundle()//iniciamos la variable
+                    bundle.putString("Login","Login")
+                    actividadCarga.putExtras(bundle)
+                    this.startActivity(actividadCarga)
                 }else{
                     Toast.makeText(contexto,"Has especificado una contraseña o email incorrecto",Toast.LENGTH_LONG).show()
                 }
