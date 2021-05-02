@@ -64,14 +64,14 @@
                 android:textAlignment="center" />
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/estiloEditText"
+
                 android:layout_width="match_parent"
 
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editPassActual"
-                    style="@style/estiloEditText"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/contraseniaActual"
@@ -80,13 +80,13 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/estiloEditText"
+
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/editPassNueva"
-                    style="@style/estiloEditText"
+
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/nuevaContrasenia"
@@ -94,13 +94,12 @@
                     android:textSize="23sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/estiloEditText"
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editPassNueva2"
-                        style="@style/estiloEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="@string/repiteContrasenia"
