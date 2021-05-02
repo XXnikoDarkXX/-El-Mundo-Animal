@@ -42,6 +42,8 @@
     <string name="tituloCambiarContrasenia">A continuación puedes cambiar la contraseña</string>
     <string name="nuevaContrasenia">Nueva Contraseña</string>
     <string name="btnCambiar">Cambiar</string>
-
+    <string name="cambiarDatosPerfil">Cambiar Datos del Perfil</string>
+    <string name="eliminarUsuario">Eliminar Usuario</string>
+    <string name="eliminar">Eliminar</string>
 
 </resources>

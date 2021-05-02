@@ -80,7 +80,7 @@ class CambiarContrasenia : AppCompatActivity() {
                                             Toast.LENGTH_LONG
                                         ).show()
 
-                                        insertarUsuarioFirebase(usuario)
+                                        insertarOActualizarUsuario(usuario)
 
                                     }
 
@@ -103,18 +103,18 @@ class CambiarContrasenia : AppCompatActivity() {
     }
 
     /**
-     * Funcion para insertar en la bbdd (firestore) el usuario pasado por parametros
+     * Funcion para insertar o acutalizar en la bbdd (firestore) el usuario pasado por parametros
      */
-    fun insertarUsuarioFirebase(usuario: Usuario) {
+    fun insertarOActualizarUsuario(usuario: Usuario) {
 
         firebaseDB.collection("usuarios").document(usuario.email).set(usuario).addOnCompleteListener(this,
             OnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    //Toast.makeText( this,"Insertado correctamente", Toast.LENGTH_LONG).show()
+                    //Toast.makeText( this,"Insertado/Actualizado correctamente", Toast.LENGTH_LONG).show()
                     startActivity(Intent(this, Principal::class.java))
 
                 }else{
-                    Toast.makeText( this,"usuario no insertado en la colleccion", Toast.LENGTH_LONG).show()
+                    Toast.makeText( this,"usuario no insertado/actualizdo en la colleccion", Toast.LENGTH_LONG).show()
                 }
             })
 

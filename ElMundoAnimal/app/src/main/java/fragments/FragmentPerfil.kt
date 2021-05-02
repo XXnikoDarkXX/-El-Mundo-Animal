@@ -1,6 +1,7 @@
 package fragments
 
 import actividades.CambiarContrasenia
+import actividades.CambiarDatosUsuario
 import actividades.MainActivity
 import actividades.PurebaConsultaFirebase
 import android.content.Intent
@@ -79,6 +80,11 @@ class FragmentPerfil : Fragment() {
             startActivity(intent)
 
         })
+        cardView7.setOnClickListener(View.OnClickListener {
+            val intent = Intent(activity, CambiarDatosUsuario::class.java)
+            startActivity(intent)
+
+        })
         return view
     }
 
@@ -98,7 +104,9 @@ class FragmentPerfil : Fragment() {
             }
     }
 
-
+    /**
+     * Funcion para finalizar la sesion del usuario
+     */
     fun finalizarSesion(){
         firebaseAuth.signOut()
 
