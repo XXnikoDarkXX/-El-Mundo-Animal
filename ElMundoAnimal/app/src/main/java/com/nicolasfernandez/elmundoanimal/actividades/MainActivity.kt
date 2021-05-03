@@ -1,4 +1,4 @@
-package actividades
+package com.nicolasfernandez.elmundoanimal.actividades
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,20 +8,18 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import clases.Usuario
+import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.RuntimeExecutionException
-import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.auth.GoogleAuthProvider
 import com.nicolasfernandez.elmundoanimal.R
-import constantes.Database
+import com.nicolasfernandez.elmundoanimal.constantes.Database
 
-import constantes.Database.Companion.firebaseAuth
-import org.w3c.dom.Text
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
 
 
 class MainActivity : AppCompatActivity() {

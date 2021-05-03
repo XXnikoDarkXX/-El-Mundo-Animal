@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/azul"
-    tools:context="actividades.CambiarDatosUsuario">
+    tools:context="com.nicolasfernandez.elmundoanimal.actividades.CambiarDatosUsuario">
 
     <Button
         android:id="@+id/btnEliminarUsuario"

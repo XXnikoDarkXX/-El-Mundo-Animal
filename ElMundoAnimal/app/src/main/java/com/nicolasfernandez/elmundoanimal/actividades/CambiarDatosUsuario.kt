@@ -1,4 +1,4 @@
-package actividades
+package com.nicolasfernandez.elmundoanimal.actividades
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -6,15 +6,15 @@ import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
-import clases.Usuario
+import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.auth.AuthCredential
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseUser
 import com.nicolasfernandez.elmundoanimal.R
-import constantes.Database
-import constantes.Database.Companion.firebaseAuth
-import constantes.Database.Companion.firebaseDB
+import com.nicolasfernandez.elmundoanimal.constantes.Database
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 
 class CambiarDatosUsuario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -24,7 +24,7 @@ class CambiarDatosUsuario : AppCompatActivity() {
 
 
     /**
-     * Funcion para cambiar datos del perfil
+     * Funcion para cambiar datos del perfil consultando a la bbdd
      */
     fun cambiar(view: View) {
         val nickname:EditText = findViewById<EditText>(R.id.editTextNickname)
@@ -46,6 +46,12 @@ class CambiarDatosUsuario : AppCompatActivity() {
         }
 
     }
+
+    /**
+     * Funcion para eliminar un usuario de nuestra aplicacion mediante diferentes consultas
+     * Para ello hemos comprobado que las contraseñas puestas en las actividad sean las mismas que el usuario al qu7e vamos a borrar
+     * Tambien comprobamos las credenciales del usuario para luego hacer un borrado
+     */
     fun eliminar(view: View) {
         val pass1:EditText = findViewById<EditText>(R.id.editTextPassActual)
         val pass2:EditText=findViewById<EditText>(R.id.editTextPassActual2)
@@ -88,6 +94,7 @@ class CambiarDatosUsuario : AppCompatActivity() {
 
     /**
      * Funcion para insertar o acutalizar en la bbdd (firestore) el usuario pasado por parametros
+     * @param usuario Usuario al que vamos a insertar o actualizar
      */
     fun insertarOActualizarUsuario(usuario: Usuario) {
 
@@ -105,6 +112,11 @@ class CambiarDatosUsuario : AppCompatActivity() {
 
 
     }
+
+    /**
+     * Funcion para borrar Usuario
+     * @param usuario objeto de tipo Usuario que vamos a borrar de la bbdd
+     */
     fun borrarUsuario(usuario: Usuario){
         firebaseDB.collection("usuarios").document(usuario.email).delete().addOnCompleteListener {
             Toast.makeText(this, "Usuario Eliminado", Toast.LENGTH_LONG)

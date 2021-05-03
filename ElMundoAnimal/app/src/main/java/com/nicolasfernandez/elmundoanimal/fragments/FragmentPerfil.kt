@@ -1,9 +1,8 @@
-package fragments
+package com.nicolasfernandez.elmundoanimal.fragments
 
-import actividades.CambiarContrasenia
-import actividades.CambiarDatosUsuario
-import actividades.MainActivity
-import actividades.PurebaConsultaFirebase
+import com.nicolasfernandez.elmundoanimal.actividades.CambiarContrasenia
+import com.nicolasfernandez.elmundoanimal.actividades.CambiarDatosUsuario
+import com.nicolasfernandez.elmundoanimal.actividades.MainActivity
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,10 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.cardview.widget.CardView
-import clases.Usuario
+import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
-import constantes.Database.Companion.firebaseAuth
-import constantes.Database.Companion.firebaseDB
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

@@ -1,4 +1,4 @@
-package actividades
+package com.nicolasfernandez.elmundoanimal.actividades
 
 import android.content.Intent
 import android.os.Bundle

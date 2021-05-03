@@ -1,4 +1,4 @@
-package constantes
+package com.nicolasfernandez.elmundoanimal.constantes
 
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore

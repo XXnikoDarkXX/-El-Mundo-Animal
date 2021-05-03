@@ -1,4 +1,4 @@
-package actividades
+package com.nicolasfernandez.elmundoanimal.actividades
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.nicolasfernandez.elmundoanimal.R
-import constantes.Database.Companion.firebaseAuth
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
 
 class LoginEmail : AppCompatActivity() {
     val email:EditText by lazy { findViewById<EditText>(R.id.loginEmail) }

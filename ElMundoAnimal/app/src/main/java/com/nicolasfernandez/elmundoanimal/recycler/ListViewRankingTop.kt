@@ -1,17 +1,15 @@
-package recycler
+package com.nicolasfernandez.elmundoanimal.recycler
 
-import android.app.Activity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.TextView
-import android.widget.Toast
-import clases.Usuario
+import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
-import fragments.FragmentJugar
+import com.nicolasfernandez.elmundoanimal.fragments.FragmentJugar
 
-class ListViewR(val fragmentActivity: Activity, val datos: ArrayList<Usuario>) : BaseAdapter() {
+    class ListViewRankingTop(val fragmentActivity: FragmentJugar, val datos: Array<Usuario>) : BaseAdapter() {
     override fun getCount(): Int {
        return datos.size
     }
@@ -21,8 +19,7 @@ class ListViewR(val fragmentActivity: Activity, val datos: ArrayList<Usuario>) :
     }
 
     override fun getItemId(position: Int): Long {
-        TODO("Not yet implemented")
-    //    return position.toLong()
+        return position.toLong()
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
@@ -31,12 +28,12 @@ class ListViewR(val fragmentActivity: Activity, val datos: ArrayList<Usuario>) :
 
         val vista: View = inflater.inflate(R.layout.elementos_mejores_jugadores, null)
 
-        Toast.makeText(fragmentActivity,""+datos.get(position),Toast.LENGTH_LONG).show()
         val nickname:TextView =vista.findViewById<TextView>(R.id.txtnickname)
         nickname.text=datos.get(position).nickname
         val txtPuntuacion:TextView=vista.findViewById<TextView>(R.id.txtPuntuacion)
-        txtPuntuacion.text=datos.get(position).ranking.toString()
-        Toast.makeText(fragmentActivity,""+datos.get(position),Toast.LENGTH_LONG).show()
+        val posicion:Byte = (1 + position).toByte()
+        txtPuntuacion.text=datos.get(position).ranking.toString()+" puntos -->"+posicion+" Posición"
+
         return vista
     }
 }

@@ -45,5 +45,7 @@
     <string name="cambiarDatosPerfil">Cambiar Datos del Perfil</string>
     <string name="eliminarUsuario">Eliminar Usuario</string>
     <string name="eliminar">Eliminar</string>
+    <string name="video">Video</string>
+    <string name="descripcion">Descripcion: </string>
 
 </resources>

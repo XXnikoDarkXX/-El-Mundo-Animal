@@ -1,16 +1,13 @@
-package recycler
+package com.nicolasfernandez.elmundoanimal.recycler
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.content.ContextCompat
-import com.google.common.reflect.Reflection.getPackageName
 import com.nicolasfernandez.elmundoanimal.R
-import fragments.Inicio
+import com.nicolasfernandez.elmundoanimal.fragments.Inicio
 
 
 class ListViewPrueba(val fragmentActivity: Inicio,val datos: ArrayList<String>) : BaseAdapter() {

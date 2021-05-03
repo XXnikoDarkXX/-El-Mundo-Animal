@@ -1,4 +1,4 @@
-package actividades
+package com.nicolasfernandez.elmundoanimal.actividades
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,15 +9,14 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import clases.Usuario
+import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.*
-import com.google.firebase.auth.EmailAuthProvider.getCredential
 import com.nicolasfernandez.elmundoanimal.R
-import constantes.Database
-import constantes.Database.Companion.firebaseAuth
-import constantes.Database.Companion.firebaseDB
+import com.nicolasfernandez.elmundoanimal.constantes.Database
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 
 
 class CambiarContrasenia : AppCompatActivity() {

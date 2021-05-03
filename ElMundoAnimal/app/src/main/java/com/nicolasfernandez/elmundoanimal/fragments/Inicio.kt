@@ -1,6 +1,6 @@
-package fragments
+package com.nicolasfernandez.elmundoanimal.fragments
 
-import actividades.PurebaConsultaFirebase
+import com.nicolasfernandez.elmundoanimal.actividades.PurebaConsultaFirebase
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,7 +11,8 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.nicolasfernandez.elmundoanimal.R
-import recycler.ListViewPrueba
+import com.nicolasfernandez.elmundoanimal.actividades.FichaAnimal
+import com.nicolasfernandez.elmundoanimal.recycler.ListViewPrueba
 
 
 /**
@@ -22,7 +23,7 @@ import recycler.ListViewPrueba
 class Inicio : Fragment() {
 
     lateinit var btnPrueba: Button;
-
+    lateinit var btnFicha:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,8 +40,8 @@ class Inicio : Fragment() {
 
        val view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
 
-        btnPrueba = view.findViewById(R.id.btnPrueba) as Button
-
+        btnPrueba = view.findViewById(R.id.btnIrAyuda) as Button
+        btnFicha= view.findViewById<Button>(R.id.btnPrueba)
         btnPrueba.setOnClickListener(View.OnClickListener {
 
             Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
@@ -49,7 +50,14 @@ class Inicio : Fragment() {
             startActivity(intent)
 
         })
+        btnFicha.setOnClickListener(View.OnClickListener {
 
+            Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
+
+            val intent = Intent(activity, FichaAnimal::class.java)
+            startActivity(intent)
+
+        })
         val datos: ArrayList<String> = ArrayList<String>()
         datos.add("aves")
         datos.add("insectos")

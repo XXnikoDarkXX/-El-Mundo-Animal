@@ -1,4 +1,4 @@
-package fragments
+package com.nicolasfernandez.elmundoanimal.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,11 +9,11 @@ import android.widget.ListView
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.cardview.widget.CardView
-import clases.Usuario
+import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
-import constantes.Database.Companion.firebaseAuth
-import constantes.Database.Companion.firebaseDB
-import recycler.ListViewRankingTop
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
+import com.nicolasfernandez.elmundoanimal.recycler.ListViewRankingTop
 
 
 /**

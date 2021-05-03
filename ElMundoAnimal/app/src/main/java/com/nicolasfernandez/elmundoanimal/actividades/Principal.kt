@@ -1,20 +1,17 @@
-package actividades
+package com.nicolasfernandez.elmundoanimal.actividades
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import clases.Usuario
+import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.nicolasfernandez.elmundoanimal.R
-import constantes.Database
-import constantes.Database.Companion.firebaseAuth
-import fragments.FragmentJugar
-import fragments.FragmentPerfil
-import fragments.Inicio
-import java.lang.reflect.Array.newInstance
+import com.nicolasfernandez.elmundoanimal.constantes.Database
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
+import com.nicolasfernandez.elmundoanimal.fragments.FragmentJugar
+import com.nicolasfernandez.elmundoanimal.fragments.FragmentPerfil
+import com.nicolasfernandez.elmundoanimal.fragments.Inicio
 
 class Principal : AppCompatActivity() {
     companion object{val selfer=this}
