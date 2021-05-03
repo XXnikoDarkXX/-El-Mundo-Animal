@@ -15,14 +15,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ElMundoAnimal">
-        <activity android:name=".actividades.FichaAnimal"
-       android:configChanges="keyboardHidden|orientation|screenSize"
-        />
+        <activity android:name=".actividades.ControlPeticionesAnimales"></activity>
+        <activity android:name=".actividades.PeticionAniadirAnimales" />
+        <activity
+            android:name=".actividades.FichaAnimal"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity android:name=".actividades.CambiarDatosUsuario" />
         <activity android:name=".actividades.CambiarContrasenia" />
         <activity android:name=".actividades.Carga" />
-        <activity android:name=".actividades.PurebaConsultaFirebase"
-            android:configChanges="keyboardHidden|orientation|screenSize"/>
+        <activity
+            android:name=".actividades.PurebaConsultaFirebase"
+            android:configChanges="keyboardHidden|orientation|screenSize" />
         <activity android:name=".actividades.Principal" />
         <activity android:name=".actividades.LoginEmail" />
         <activity android:name=".actividades.Registro" />

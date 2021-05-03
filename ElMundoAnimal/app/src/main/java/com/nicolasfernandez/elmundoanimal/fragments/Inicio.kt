@@ -11,7 +11,9 @@ import android.widget.ListView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.nicolasfernandez.elmundoanimal.R
+import com.nicolasfernandez.elmundoanimal.actividades.ControlPeticionesAnimales
 import com.nicolasfernandez.elmundoanimal.actividades.FichaAnimal
+import com.nicolasfernandez.elmundoanimal.actividades.PeticionAniadirAnimales
 import com.nicolasfernandez.elmundoanimal.recycler.ListViewPrueba
 
 
@@ -46,7 +48,7 @@ class Inicio : Fragment() {
 
             Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(activity, PurebaConsultaFirebase::class.java)
+            val intent = Intent(activity, ControlPeticionesAnimales::class.java)
             startActivity(intent)
 
         })
@@ -54,7 +56,7 @@ class Inicio : Fragment() {
 
             Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(activity, FichaAnimal::class.java)
+            val intent = Intent(activity, PeticionAniadirAnimales::class.java)
             startActivity(intent)
 
         })

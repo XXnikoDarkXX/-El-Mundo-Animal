@@ -1,12 +1,15 @@
 package com.nicolasfernandez.elmundoanimal.actividades
 
 import android.media.Image
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
@@ -23,7 +26,10 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
     val txtDescripcion:TextView by lazy { findViewById<TextView>(R.id.txtDescripcion) }
     val imgFoto:ImageView by lazy { findViewById<ImageView>(R.id.imgFoto) }
     val txtNombre:TextView by lazy { findViewById<TextView>(R.id.txtNombreAnimal) }
+    val cartaContenido:CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal) }
+    val cartaVideo:CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal2) }
 
+    val loading:ProgressBar by lazy {findViewById<ProgressBar>(R.id.cargaFicha)  }
     lateinit var animal: Animal
     val reproductor:YouTubePlayerView by lazy { findViewById<YouTubePlayerView>(R.id.reproductor) }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +47,9 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
             p1.setPlayerStyle(YouTubePlayer.PlayerStyle.DEFAULT)
             p1.loadVideo(animal.video)
             p1.play()
+            loading.visibility=View.GONE
+            cartaContenido.visibility=View.VISIBLE
+            cartaVideo.visibility=View.VISIBLE
         }
     }
 
@@ -70,7 +79,7 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
                        .into(imgFoto)
                     txtNombre.text=animal.nombre
                     reproductor.initialize(APIConstantes.APIYoutube,this)
-                    //Toast.makeText(this,""+ ave,Toast.LENGTH_LONG).show()
+
                 }
             }
 

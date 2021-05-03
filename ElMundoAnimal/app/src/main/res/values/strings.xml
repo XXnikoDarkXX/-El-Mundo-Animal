@@ -47,5 +47,9 @@
     <string name="eliminar">Eliminar</string>
     <string name="video">Video</string>
     <string name="descripcion">Descripcion: </string>
-
+    <string name="aniadir">Añadir!!</string>
+    <string name="tipo">Tipo</string>
+    <string name="urlFoto">URL de la foto</string>
+    <string name="valueVideo">Value del video</string>
+    <string name="controlPeticionesAnimales">Control de Peticiones de Animales</string>
 </resources>

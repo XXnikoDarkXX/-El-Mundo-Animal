@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="tiposAnimales">
+        <item>Aves</item>
+        <item>Insectos</item>
+        <item>Mamifero</item>
+        <item>Peces</item>
+        <item>Reptiles</item>
+    </string-array>
+</resources>

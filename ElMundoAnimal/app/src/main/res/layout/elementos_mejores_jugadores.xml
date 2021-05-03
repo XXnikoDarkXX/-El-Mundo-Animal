@@ -28,7 +28,7 @@
 
 
             <TextView
-                android:id="@+id/txtnickname"
+                android:id="@+id/txtNombreAnimal2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"

@@ -28,7 +28,7 @@ import com.nicolasfernandez.elmundoanimal.fragments.FragmentJugar
 
         val vista: View = inflater.inflate(R.layout.elementos_mejores_jugadores, null)
 
-        val nickname:TextView =vista.findViewById<TextView>(R.id.txtnickname)
+        val nickname:TextView =vista.findViewById<TextView>(R.id.txtNombreAnimal2)
         nickname.text=datos.get(position).nickname
         val txtPuntuacion:TextView=vista.findViewById<TextView>(R.id.txtPuntuacion)
         val posicion:Byte = (1 + position).toByte()
