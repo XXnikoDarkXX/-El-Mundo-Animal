@@ -18,7 +18,7 @@ class ControlPeticionAdapter(val contexto:Activity,val datos:ArrayList<Animal>):
 
         holder.txtNombreAnimal.text=datos.get(position).nombre
 
-        Glide.with(contexto)
+        Glide.with(holder.itemView.context)
             .load(datos.get(position).foto)
             .into(holder.imgFotoAnimal)
 

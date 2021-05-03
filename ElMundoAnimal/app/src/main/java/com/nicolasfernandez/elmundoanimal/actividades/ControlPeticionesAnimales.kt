@@ -2,8 +2,10 @@ package com.nicolasfernandez.elmundoanimal.actividades
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.clases.Animal
 import com.nicolasfernandez.elmundoanimal.clases.Usuario
@@ -18,7 +20,10 @@ class ControlPeticionesAnimales : AppCompatActivity() {
 
         traerPeticionesAnimales()
 
-
+        /*val imgFoto:ImageView= findViewById<ImageView>(R.id.imgFotoAnimal)
+        Glide.with(this)
+            .load("http://www.estudiantes.info/ciencias_naturales/images/pinguino-trio.png")
+            .into(imgFoto)*/
 
     }
     fun traerPeticionesAnimales(){
