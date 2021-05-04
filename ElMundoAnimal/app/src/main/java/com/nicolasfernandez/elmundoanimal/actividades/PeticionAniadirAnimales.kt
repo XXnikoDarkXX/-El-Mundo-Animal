@@ -1,5 +1,6 @@
 package com.nicolasfernandez.elmundoanimal.actividades
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -31,7 +32,6 @@ class PeticionAniadirAnimales : AppCompatActivity() {
             ) {
                 when (position) {
                     0 -> {
-                        tipo = "aves"
                         Toast.makeText(context, "aves", Toast.LENGTH_LONG).show()
                     }
                     1 -> {
@@ -61,29 +61,9 @@ class PeticionAniadirAnimales : AppCompatActivity() {
         }
     }
 
-    // var tipo:String, var nombre:String, var foto:String, var descripcion:String, var video:String
+
     fun clickAniadir(view: View) {
 
-        /*   spinnerTipos.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-               override fun onItemSelected(
-                   parent: AdapterView<*>?,
-                   view: View?,
-                   position: Int,
-                   id: Long
-               ) {
-                   when (position){
-                       0->tipo="aves"
-                       1->tipo="insectos"
-                       2->tipo="mamifero"
-                       3->tipo="peces"
-                       4->tipo="reptiles"
-                   }
-               }
-
-               override fun onNothingSelected(parent: AdapterView<*>?) {
-   */
-        //   }
-        // }
         var nombre: String = editTextNombreAnimal.text.toString()
         var fotoUrl: String = editTextUrl.text.toString()
         var descripcion = editTextDescripcion.text.toString()
@@ -95,6 +75,8 @@ class PeticionAniadirAnimales : AppCompatActivity() {
                     if (task.isSuccessful) {
                         Toast.makeText(this, "Peticion hecha correctamente", Toast.LENGTH_LONG)
                             .show()
+                        startActivity(Intent(this, Principal::class.java))
+
                     } else {
                         Toast.makeText(
                             this,
@@ -103,7 +85,6 @@ class PeticionAniadirAnimales : AppCompatActivity() {
                         ).show()
                     }
                 })
-        Toast.makeText(this, "" + animal, Toast.LENGTH_LONG).show()
 
     }
 }

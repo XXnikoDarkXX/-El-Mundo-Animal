@@ -35,7 +35,14 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ficha_animal)
-        sacarFichaAnimal()
+        var bundle:Bundle?=this.intent.extras
+        var nombreAnimalPeticion:String?=bundle?.getString("ficha")
+        if (nombreAnimalPeticion!=null){
+            sacarFichaAnimal("peticionAnimales",nombreAnimalPeticion)
+        }
+
+
+
     }
 
     override fun onInitializationSuccess(
@@ -60,10 +67,10 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
         TODO("Not yet implemented")
     }
 
-    fun sacarFichaAnimal(){
+    fun sacarFichaAnimal(coleccion:String,documento:String){
 
 
-            val docRef = Database.firebaseDB.collection("aves").document("Pelicano")
+            val docRef = Database.firebaseDB.collection(coleccion).document(documento)
             docRef.get().addOnSuccessListener { documentSnapshot ->
 
                 if (documentSnapshot != null) {

@@ -52,4 +52,6 @@
     <string name="urlFoto">URL de la foto</string>
     <string name="valueVideo">Value del video</string>
     <string name="controlPeticionesAnimales">Control de Peticiones de Animales</string>
+    <string name="controlAnimales">Control de Animales (Administradores)</string>
+    <string name="irAControl">ir a Control</string>
 </resources>

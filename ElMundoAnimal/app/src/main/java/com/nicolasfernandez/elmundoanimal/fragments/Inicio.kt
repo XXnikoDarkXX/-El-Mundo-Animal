@@ -1,6 +1,5 @@
 package com.nicolasfernandez.elmundoanimal.fragments
 
-import com.nicolasfernandez.elmundoanimal.actividades.PurebaConsultaFirebase
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,7 +11,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.actividades.ControlPeticionesAnimales
-import com.nicolasfernandez.elmundoanimal.actividades.FichaAnimal
 import com.nicolasfernandez.elmundoanimal.actividades.PeticionAniadirAnimales
 import com.nicolasfernandez.elmundoanimal.recycler.ListViewPrueba
 
@@ -25,8 +23,8 @@ import com.nicolasfernandez.elmundoanimal.recycler.ListViewPrueba
 class Inicio : Fragment() {
 
     lateinit var btnPrueba: Button;
-    lateinit var btnFicha:Button
-
+    lateinit var btnAniadirAnimales:Button
+    lateinit var btnControl:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,7 +41,9 @@ class Inicio : Fragment() {
        val view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
 
         btnPrueba = view.findViewById(R.id.btnIrAyuda) as Button
-        btnFicha= view.findViewById<Button>(R.id.btnPrueba)
+        btnAniadirAnimales= view.findViewById<Button>(R.id.btnAniadirAnimales)
+        btnControl=view.findViewById<Button>(R.id.btnControl)
+
         btnPrueba.setOnClickListener(View.OnClickListener {
 
             Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
@@ -52,7 +52,19 @@ class Inicio : Fragment() {
             startActivity(intent)
 
         })
-        btnFicha.setOnClickListener(View.OnClickListener {
+
+
+        btnControl.setOnClickListener(View.OnClickListener {
+
+
+
+            val intent = Intent(activity, ControlPeticionesAnimales::class.java)
+            startActivity(intent)
+
+        })
+
+        //TO DO CAMBIAR ESTO
+        btnAniadirAnimales.setOnClickListener(View.OnClickListener {
 
             Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
 
