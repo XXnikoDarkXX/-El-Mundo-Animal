@@ -25,6 +25,7 @@ import org.w3c.dom.Text
 class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
     val txtDescripcion:TextView by lazy { findViewById<TextView>(R.id.txtDescripcion) }
     val imgFoto:ImageView by lazy { findViewById<ImageView>(R.id.imgFoto) }
+    val txtTipo:TextView by lazy { findViewById<TextView>(R.id.txtTipo) }
     val txtNombre:TextView by lazy { findViewById<TextView>(R.id.txtNombreAnimal) }
     val cartaContenido:CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal) }
     val cartaVideo:CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal2) }
@@ -80,7 +81,7 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
                         animal=ave
                     }
                    txtDescripcion.text=animal.descripcion
-
+                    txtTipo.text="Tipo: "+animal.tipo
                     Glide.with(this)
                        .load(animal.foto)
                        .into(imgFoto)

@@ -5,10 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import androidx.cardview.widget.CardView
+import com.google.firebase.firestore.Query
 import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
@@ -28,6 +27,7 @@ class FragmentJugar : Fragment() {
     lateinit var cardView5: CardView
     lateinit var cardView6: CardView
     lateinit var pgCarga2:ProgressBar
+    lateinit var scrollJugar:ScrollView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,38 +46,45 @@ class FragmentJugar : Fragment() {
 
 
         cardView2 = view.findViewById<CardView>(R.id.cardView2)
-        cardView4= view.findViewById<CardView>(R.id.cardView4)
+        scrollJugar=view.findViewById<ScrollView>(R.id.scrollJugar)
+       /* cardView4= view.findViewById<CardView>(R.id.cardView4)
         cardView5= view.findViewById<CardView>(R.id.cardView5)
         cardView6= view.findViewById<CardView>(R.id.cardView5)
         cardView2.visibility=View.GONE
         cardView4.visibility=View.GONE
         cardView5.visibility=View.GONE
-        cardView6.visibility=View.GONE
+        cardView6.visibility=View.GONE*/
+        scrollJugar.visibility=View.GONE
         //ListView para coger los primeros 5 usuarios
 
-        var jugadores: ArrayList<Usuario> = ArrayList<Usuario>()
+    //    var jugadores: ArrayList<Usuario> = ArrayList<Usuario>()
+       // var jugadores: ArrayList<Usuario> = ArrayList<Usuario>()
+        val jugadores:Array<Usuario>  = Array(5) { i -> Usuario() }
         firebaseDB.collection("usuarios")
-            .get()
+            .limit(5).orderBy("ranking",Query.Direction.DESCENDING).get()
             .addOnSuccessListener { result ->
+                var contador:Int=0;
                 for (document in result) {
 
-                    val user= document.toObject(Usuario::class.java)
+                    val user= document.toObject(Usuario::class.java) as Usuario
 
-                    jugadores.add(user)
+                    jugadores[contador]=user
+                    contador++
 
                 }
-                val array= rankingTop5(jugadores)
-                val adapter: ListViewRankingTop = ListViewRankingTop(this,array)
-                val lista: ListView = view.findViewById(R.id.listaMejoresJugadores)
+
+               val adapter: ListViewRankingTop = ListViewRankingTop(this,jugadores)
+               val lista: ListView = view.findViewById(R.id.listaMejoresJugadores)
 
                 lista.adapter=adapter
                 puntuacionJugador( view, jugadores)
                 pgCarga2=view.findViewById(R.id.pgCarga2)
                 pgCarga2.visibility=View.GONE
                 cardView2.visibility=View.VISIBLE
-                cardView4.visibility=View.VISIBLE
+              /*  cardView4.visibility=View.VISIBLE
                 cardView5.visibility=View.VISIBLE
-                cardView6.visibility=View.VISIBLE
+                cardView6.visibility=View.VISIBLE*/
+                scrollJugar.visibility=View.VISIBLE
             }
             .addOnFailureListener { exception ->
                 //Log.d(TAG, "Error getting documents: ", exception)
@@ -115,8 +122,8 @@ class FragmentJugar : Fragment() {
             }
     }
 
-    fun puntuacionJugador( view: View, jugadores:ArrayList<Usuario>){
 
+    fun puntuacionJugador( view: View, jugadores:Array<Usuario>){
         for(jugador in jugadores){
             if (jugador.email.equals(firebaseAuth.currentUser.email)){
                 val nombre: TextView = view.findViewById(R.id.nombreJugador)
@@ -131,7 +138,8 @@ class FragmentJugar : Fragment() {
         }
     }
 
-
+/*
+No sirve
     fun rankingTop5(jugadores: ArrayList<Usuario>):Array<Usuario> {
         val array:Array<Usuario>  = Array(5) { i -> Usuario() }
 
@@ -149,7 +157,7 @@ class FragmentJugar : Fragment() {
         }
         return array
     }
-
+*//*
     /**
      * Funcion para comprobar si jugador tiene mayor puntuacion que los jugadores del array
      * @param jugador jugador que vamos a comprobar que tenga mas puntuacion que los jugadores del array
@@ -176,6 +184,6 @@ class FragmentJugar : Fragment() {
 
 
         }
-    }
+    }*/
 
 }

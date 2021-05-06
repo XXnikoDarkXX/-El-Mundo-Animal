@@ -1,18 +1,19 @@
 package com.nicolasfernandez.elmundoanimal.actividades
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
+import com.google.android.gms.tasks.OnCompleteListener
 import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.clases.Animal
-import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.constantes.Database
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 import com.nicolasfernandez.elmundoanimal.recycler.ControlPeticionAdapter
 
-class ControlPeticionesAnimales : AppCompatActivity() {
+ class ControlPeticionesAnimales : AppCompatActivity() {
     val recylerControl:RecyclerView by lazy { findViewById<RecyclerView>(R.id.recylerControl) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,5 +50,25 @@ class ControlPeticionesAnimales : AppCompatActivity() {
             }
     }
 
+    fun aniadirAnimalBBDD(animal:Animal){
+        firebaseDB.collection(animal.tipo).document(animal.nombre).set(animal).addOnCompleteListener(this,
+            OnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Toast.makeText( this,"Insertado correctamente", Toast.LENGTH_LONG).show()
+
+                    borrarAnimalBBDD(animal)
+
+                }else{
+                    Toast.makeText( this,"error al insertar animal en la coleccion", Toast.LENGTH_LONG).show()
+                }
+            })
+    }
+
+    fun borrarAnimalBBDD(animal:Animal){
+        firebaseDB.collection("peticionAnimales").document(animal.nombre).delete().addOnCompleteListener {
+            Toast.makeText(this, "Animal Eliminado de peticion", Toast.LENGTH_LONG)
+            traerPeticionesAnimales()
+        }
+    }
 
 }

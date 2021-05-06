@@ -5,13 +5,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.android.gms.tasks.OnCompleteListener
 import com.nicolasfernandez.elmundoanimal.R
+import com.nicolasfernandez.elmundoanimal.actividades.ControlPeticionesAnimales
 import com.nicolasfernandez.elmundoanimal.actividades.FichaAnimal
+import com.nicolasfernandez.elmundoanimal.actividades.Principal
 import com.nicolasfernandez.elmundoanimal.clases.Animal
+import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 
-class ControlPeticionAdapter(val contexto:Activity,val datos:ArrayList<Animal>):RecyclerView.Adapter<ControlPeticionesViewHolder>() {
+class ControlPeticionAdapter(val contexto:ControlPeticionesAnimales,val datos:ArrayList<Animal>):RecyclerView.Adapter<ControlPeticionesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ControlPeticionesViewHolder {
         return ControlPeticionesViewHolder(
             contexto.layoutInflater.inflate(R.layout.elementos_control_peticiones,
@@ -36,9 +41,21 @@ class ControlPeticionAdapter(val contexto:Activity,val datos:ArrayList<Animal>):
             contexto.startActivity(actividadFicha)
         }
 
+        holder.imgAniadir.setOnClickListener {
+            contexto.aniadirAnimalBBDD(datos.get(position))
+        }
+
+        holder.imgCancelar.setOnClickListener {
+            contexto.borrarAnimalBBDD(datos.get(position) )
+        }
+
     }
 
     override fun getItemCount(): Int {
     return datos.size
     }
+
+
+
+
 }
