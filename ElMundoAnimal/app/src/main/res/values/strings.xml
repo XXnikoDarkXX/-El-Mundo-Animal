@@ -54,4 +54,5 @@
     <string name="controlPeticionesAnimales">Control de Peticiones de Animales</string>
     <string name="controlAnimales">Control de Animales (Administradores)</string>
     <string name="irAControl">ir a Control</string>
+    <string name="txtSeccionAnimales">Seccion de animales de: </string>
 </resources>

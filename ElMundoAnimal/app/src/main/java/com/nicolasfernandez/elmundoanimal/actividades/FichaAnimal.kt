@@ -43,6 +43,12 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
         }
 
 
+        var fichaSeccionAnimal:String?=bundle?.getString("fichaSeccionAnimal")
+        var fichaEspecieAnimal:String?=bundle?.getString("fichaEspecieAnimal")
+        if (fichaEspecieAnimal!=null&&fichaSeccionAnimal!=null){
+            sacarFichaAnimal(fichaEspecieAnimal.toLowerCase(),fichaSeccionAnimal)
+
+        }
 
     }
 

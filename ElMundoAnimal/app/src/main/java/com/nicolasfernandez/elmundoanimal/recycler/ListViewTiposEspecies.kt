@@ -1,16 +1,21 @@
 package com.nicolasfernandez.elmundoanimal.recycler
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
+import androidx.fragment.app.FragmentActivity
 import com.nicolasfernandez.elmundoanimal.R
+import com.nicolasfernandez.elmundoanimal.actividades.SeccionAnimales
 import com.nicolasfernandez.elmundoanimal.fragments.Inicio
 
 
-class ListViewPrueba(val fragmentActivity: Inicio,val datos: ArrayList<String>) : BaseAdapter() {
+class ListViewTiposEspecies(val fragmentActivity: Inicio, val datos: ArrayList<String>) : BaseAdapter() {
     override fun getCount(): Int {
         return datos.size
     }
@@ -36,7 +41,17 @@ class ListViewPrueba(val fragmentActivity: Inicio,val datos: ArrayList<String>) 
         val icono = vista.findViewById<ImageView>(R.id.imgEspecie)
 
 
+        val cardTipos=vista.findViewById<CardView>(R.id.cardTipos)
 
+        cardTipos.setOnClickListener {
+            var bundle: Bundle?= Bundle()
+            bundle?.putString("Tipo",datos.get(position))
+            var actividadSeccionAnimales:Intent = Intent(fragmentActivity.context, SeccionAnimales::class.java)
+            if (bundle!=null){
+                actividadSeccionAnimales.putExtras(bundle)
+            }
+            fragmentActivity.context?.startActivity(actividadSeccionAnimales)
+        }
 
         establecerIcono(icono, datos.get(position))
 

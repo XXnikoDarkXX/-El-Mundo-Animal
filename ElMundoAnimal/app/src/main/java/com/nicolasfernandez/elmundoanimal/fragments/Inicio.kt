@@ -12,7 +12,7 @@ import androidx.fragment.app.Fragment
 import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.actividades.ControlPeticionesAnimales
 import com.nicolasfernandez.elmundoanimal.actividades.PeticionAniadirAnimales
-import com.nicolasfernandez.elmundoanimal.recycler.ListViewPrueba
+import com.nicolasfernandez.elmundoanimal.recycler.ListViewTiposEspecies
 
 
 /**
@@ -80,7 +80,7 @@ class Inicio : Fragment() {
         datos.add("reptiles")
 
         //Con el listView
-        val adapter:ListViewPrueba= ListViewPrueba(this, datos)
+        val adapter:ListViewTiposEspecies= ListViewTiposEspecies(this, datos)
         val lista:ListView = view.findViewById(R.id.lista)
 
         lista.adapter=adapter
