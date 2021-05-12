@@ -55,4 +55,7 @@
     <string name="controlAnimales">Control de Animales (Administradores)</string>
     <string name="irAControl">ir a Control</string>
     <string name="txtSeccionAnimales">Seccion de animales de: </string>
+    <string name="accesoAdministrador">Logueate para poder acceder al controlador de peticiones de animales</string>
+    <string name="txtUsuario">Usuario</string>
+    <string name="aceptar">Aceptar</string>
 </resources>

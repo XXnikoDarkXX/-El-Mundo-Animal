@@ -24,7 +24,7 @@ class CambiarContrasenia : AppCompatActivity() {
     val cardView11: CardView by lazy { findViewById<CardView>(R.id.cardView11) }
     val cardView12: CardView by lazy { findViewById<CardView>(R.id.cardView12) }
     val btnCambiar: Button by lazy { findViewById<Button>(R.id.btnCambiar) }
-    val txtInfoCambiar: TextView by lazy { findViewById<TextView>(R.id.txtInfoCambiar) }
+    val txtInfoCambiar: TextView by lazy { findViewById<TextView>(R.id.txtLoginAdmin) }
     val editPassActual: TextInputEditText by lazy { findViewById<TextInputEditText>(R.id.editPassActual) }
     val editPassNueva: TextInputEditText by lazy { findViewById<TextInputEditText>(R.id.editPassNueva) }
     val editPassNueva2: TextInputEditText by lazy { findViewById<TextInputEditText>(R.id.editPassNueva2) }

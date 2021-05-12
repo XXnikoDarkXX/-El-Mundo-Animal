@@ -1,5 +1,6 @@
 package com.nicolasfernandez.elmundoanimal.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,6 +26,7 @@ class Inicio : Fragment() {
     lateinit var btnPrueba: Button;
     lateinit var btnAniadirAnimales:Button
     lateinit var btnControl:Button
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -58,12 +60,20 @@ class Inicio : Fragment() {
 
 
 
-            val intent = Intent(activity, ControlPeticionesAnimales::class.java)
-            startActivity(intent)
+          //  val intent = Intent(activity, ControlPeticionesAnimales::class.java)
+           // startActivity(intent)
+
+            val fragmentJuego = FragmentLoginAdministrador.newInstance()
+            val transaction = activity?.supportFragmentManager?.beginTransaction()
+            if (transaction != null) {
+                transaction.replace(R.id.container, fragmentJuego)
+                transaction.addToBackStack(null)
+                transaction.commit()
+
+            }
 
         })
 
-        //TO DO CAMBIAR ESTO
         btnAniadirAnimales.setOnClickListener(View.OnClickListener {
 
             Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
