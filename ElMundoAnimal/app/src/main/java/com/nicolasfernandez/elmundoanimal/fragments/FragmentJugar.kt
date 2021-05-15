@@ -1,5 +1,6 @@
 package com.nicolasfernandez.elmundoanimal.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,8 @@ import androidx.cardview.widget.CardView
 import com.google.firebase.firestore.Query
 import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
+import com.nicolasfernandez.elmundoanimal.actividades.ControlPeticionesAnimales
+import com.nicolasfernandez.elmundoanimal.actividades.Juego
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 import com.nicolasfernandez.elmundoanimal.recycler.ListViewRankingTop
@@ -28,6 +31,7 @@ class FragmentJugar : Fragment() {
     lateinit var cardView6: CardView
     lateinit var pgCarga2:ProgressBar
     lateinit var scrollJugar:ScrollView
+    lateinit var btnJugar:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +51,7 @@ class FragmentJugar : Fragment() {
 
         cardView2 = view.findViewById<CardView>(R.id.cardView2)
         scrollJugar=view.findViewById<ScrollView>(R.id.scrollJugar)
-       /* cardView4= view.findViewById<CardView>(R.id.cardView4)
-        cardView5= view.findViewById<CardView>(R.id.cardView5)
-        cardView6= view.findViewById<CardView>(R.id.cardView5)
-        cardView2.visibility=View.GONE
-        cardView4.visibility=View.GONE
-        cardView5.visibility=View.GONE
-        cardView6.visibility=View.GONE*/
+        btnJugar=view.findViewById<Button>(R.id.btnJugar)
         scrollJugar.visibility=View.GONE
         //ListView para coger los primeros 5 usuarios
 
@@ -81,17 +79,19 @@ class FragmentJugar : Fragment() {
                 pgCarga2=view.findViewById(R.id.pgCarga2)
                 pgCarga2.visibility=View.GONE
                 cardView2.visibility=View.VISIBLE
-              /*  cardView4.visibility=View.VISIBLE
-                cardView5.visibility=View.VISIBLE
-                cardView6.visibility=View.VISIBLE*/
+
                 scrollJugar.visibility=View.VISIBLE
+
             }
             .addOnFailureListener { exception ->
                 //Log.d(TAG, "Error getting documents: ", exception)
             }
 
 
-
+            btnJugar.setOnClickListener {
+                val intent = Intent(activity, Juego::class.java)
+                startActivity(intent)
+            }
 
 
         return view

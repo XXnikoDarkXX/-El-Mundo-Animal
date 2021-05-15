@@ -59,4 +59,9 @@
     <string name="txtUsuario">Usuario</string>
     <string name="aceptar">Aceptar</string>
     <string name="vidas">Total de vidas: </string>
+    <string name="a">A </string>
+    <string name="b">B</string>
+    <string name="c">C</string>
+    <string name="d">D</string>
+    <string name="descripcionPregunta">DescPregunta</string>
 </resources>
