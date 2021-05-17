@@ -71,6 +71,10 @@ class FragmentJugar : Fragment() {
 
                 }
 
+                val a:String="hola"
+                if (a.equals("hola")){
+
+                }
                val adapter: ListViewRankingTop = ListViewRankingTop(this,jugadores)
                val lista: ListView = view.findViewById(R.id.listaMejoresJugadores)
 
