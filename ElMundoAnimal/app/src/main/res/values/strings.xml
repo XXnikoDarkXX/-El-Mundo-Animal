@@ -65,4 +65,5 @@
     <string name="d">D</string>
     <string name="descripcionPregunta">DescPregunta</string>
     <string name="txtBuscador">Escribe el nombre del animal</string>
+    <string name="idPregunta">ID Pregunta</string>
 </resources>

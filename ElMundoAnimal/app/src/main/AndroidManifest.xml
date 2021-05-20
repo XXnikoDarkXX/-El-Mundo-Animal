@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ElMundoAnimal">
-        <activity android:name=".actividades.Juego"></activity>
+        <activity android:name=".actividades.PruebaCargarDatos"></activity>
+        <activity android:name=".actividades.Juego" />
         <activity android:name=".actividades.SeccionAnimales" />
         <activity android:name=".actividades.ControlPeticionesAnimales" />
         <activity android:name=".actividades.PeticionAniadirAnimales" />
