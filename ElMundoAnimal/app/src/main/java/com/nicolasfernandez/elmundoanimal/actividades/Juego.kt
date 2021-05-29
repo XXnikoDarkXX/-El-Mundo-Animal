@@ -5,10 +5,7 @@ import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
 import com.google.android.gms.tasks.OnCompleteListener
@@ -23,7 +20,7 @@ import java.util.Random
 class Juego : AppCompatActivity() {
     val txtVida: TextView by lazy { findViewById<TextView>(R.id.txtVida) }
     val txtIdPregunta: TextView by lazy { findViewById<TextView>(R.id.txtIdPregunta) }
-
+    val cargaJuego :ProgressBar by lazy { findViewById(R.id.cargaJuego) }
     val txtPuntuacionJugador: TextView by lazy { findViewById<TextView>(R.id.txtPuntuacionJugador) }
 
     val txtPregunta: TextView by lazy { findViewById(R.id.txtPregunta) }
@@ -45,7 +42,7 @@ class Juego : AppCompatActivity() {
         txtVida.text = txtVida.text.toString() + " " + contador
       puntuacionJugador()
         //iniciamos el juego
-        //    iniciarJuego()
+           iniciarJuego()
 
         //Obtenemos las preguntas del juego
         obtenerPreguntas()
@@ -93,21 +90,22 @@ class Juego : AppCompatActivity() {
 
     }
 
-    /*
+
 
     fun iniciarJuego() {
 
-        Database.firebaseDB.collection("juego").get().addOnSuccessListener { result ->
+        obtenerPreguntas()
+        cargaJuego.visibility=View.GONE
+        txtIdPregunta.visibility=View.VISIBLE
+        imgAnimal.visibility=View.VISIBLE
+        btnA.visibility=View.VISIBLE
+        btnB.visibility=View.VISIBLE
+        btnC.visibility=View.VISIBLE
+        btnD.visibility=View.VISIBLE
 
-            for (document in result) {
 
-                var pregunta = document.toObject(Pregunta::class.java) as Pregunta
-                borrarAnimalBBDD(pregunta.id)
-            }
-
-        }
     }
-
+/*
 
     fun borrarAnimalBBDD(id:String ){
         Database.firebaseDB.collection("juego_usuario").document(id).delete().addOnCompleteListener {
@@ -162,6 +160,7 @@ class Juego : AppCompatActivity() {
             btnD.text = preguntas.get(indice).d
         } else {
             Toast.makeText(this, "Ganastes el juego", Toast.LENGTH_LONG).show()
+            terminarJuego()
         }
 
     }
