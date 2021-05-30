@@ -27,8 +27,8 @@ class CambiarDatosUsuario : AppCompatActivity() {
      * Funcion para cambiar datos del perfil consultando a la bbdd
      */
     fun cambiar(view: View) {
-        val nickname:EditText = findViewById<EditText>(R.id.editTextNickname)
-        val nombre:EditText= findViewById<EditText>(R.id.editTextNombre)
+        val nickname: EditText = findViewById<EditText>(R.id.editTextNickname)
+        val nombre: EditText = findViewById<EditText>(R.id.editTextNombre)
 
         var usuario: Usuario = Usuario()
         val docRef = Database.firebaseDB.collection("usuarios")
@@ -38,8 +38,8 @@ class CambiarDatosUsuario : AppCompatActivity() {
             if (user != null) {
 
                 usuario = user
-                usuario.nickname=nickname.text.toString()
-                usuario.nombre=nombre.text.toString()
+                usuario.nickname = nickname.text.toString()
+                usuario.nombre = nombre.text.toString()
                 insertarOActualizarUsuario(usuario)
 
             }
@@ -48,13 +48,54 @@ class CambiarDatosUsuario : AppCompatActivity() {
     }
 
     /**
+     * Funcion para insertar o acutalizar en la bbdd (firestore) el usuario pasado por parametros
+     * @param usuario Usuario al que vamos a insertar o actualizar
+     */
+    fun insertarOActualizarUsuario(usuario: Usuario) {
+
+        Database.firebaseDB.collection("usuarios").document(usuario.email).set(usuario)
+            .addOnCompleteListener(this,
+                OnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Toast.makeText(
+                            this,
+                            "Insertado/Actualizado correctamente",
+                            Toast.LENGTH_LONG
+                        ).show()
+                        startActivity(Intent(this, Principal::class.java))
+
+                    } else {
+                        Toast.makeText(
+                            this,
+                            "usuario no insertado/actualizado en la colleccion",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+                })
+
+
+    }
+
+    /**
+     * Funcion para borrar Usuario
+     * @param usuario objeto de tipo Usuario que vamos a borrar de la bbdd
+     */
+    fun borrarUsuario(usuario: Usuario) {
+        firebaseDB.collection("usuarios").document(usuario.email).delete().addOnCompleteListener {
+            Toast.makeText(this, "Usuario Eliminado", Toast.LENGTH_LONG)
+            startActivity(Intent(this, MainActivity::class.java))
+        }
+    }
+
+
+    /**
      * Funcion para eliminar un usuario de nuestra aplicacion mediante diferentes consultas
      * Para ello hemos comprobado que las contraseñas puestas en las actividad sean las mismas que el usuario al qu7e vamos a borrar
      * Tambien comprobamos las credenciales del usuario para luego hacer un borrado
      */
     fun eliminar(view: View) {
-        val pass1:EditText = findViewById<EditText>(R.id.editTextPassActual)
-        val pass2:EditText=findViewById<EditText>(R.id.editTextPassActual2)
+        val pass1: EditText = findViewById<EditText>(R.id.editTextPassActual)
+        val pass2: EditText = findViewById<EditText>(R.id.editTextPassActual2)
         var usuario: Usuario = Usuario()
 
         val docRef = Database.firebaseDB.collection("usuarios")
@@ -63,8 +104,10 @@ class CambiarDatosUsuario : AppCompatActivity() {
             var user = documentSnapshot.toObject(Usuario::class.java)
             if (user != null) {
                 usuario = user
-                if (pass1.text.toString().equals(pass2.text.toString()) && pass1.text.toString()
-                        .equals(usuario.contrasenia)) {
+                if (pass1.text.toString().equals(pass2.text.toString())
+                    && firebaseAuth.currentUser.email.toString().equals(usuario.email)
+                ) {
+
 
                     var user: FirebaseUser = firebaseAuth.currentUser
 
@@ -77,51 +120,24 @@ class CambiarDatosUsuario : AppCompatActivity() {
                             Toast.makeText(this, "Reautenticiacion completa", Toast.LENGTH_LONG)
                                 .show()
 
-                    user?.delete().addOnCompleteListener {
-                        if(it.isSuccessful){
-                            borrarUsuario(usuario)
+                            user?.delete().addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    borrarUsuario(usuario)
+                                }
+                            }
+                        }else{
+                            Toast.makeText(this, "La contraseña no es correcta", Toast.LENGTH_LONG).show()
+
                         }
                     }
-                        }
-                    }
+                } else {
+                    Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG).show()
                 }
             }
-
         }
 
-
     }
 
-    /**
-     * Funcion para insertar o acutalizar en la bbdd (firestore) el usuario pasado por parametros
-     * @param usuario Usuario al que vamos a insertar o actualizar
-     */
-    fun insertarOActualizarUsuario(usuario: Usuario) {
-
-        Database.firebaseDB.collection("usuarios").document(usuario.email).set(usuario).addOnCompleteListener(this,
-            OnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText( this,"Insertado/Actualizado correctamente", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, Principal::class.java))
-
-                }else{
-                    Toast.makeText( this,"usuario no insertado/actualizado en la colleccion", Toast.LENGTH_LONG).show()
-                }
-            })
-
-
-
-    }
-
-    /**
-     * Funcion para borrar Usuario
-     * @param usuario objeto de tipo Usuario que vamos a borrar de la bbdd
-     */
-    fun borrarUsuario(usuario: Usuario){
-        firebaseDB.collection("usuarios").document(usuario.email).delete().addOnCompleteListener {
-            Toast.makeText(this, "Usuario Eliminado", Toast.LENGTH_LONG)
-            startActivity(Intent(this, MainActivity::class.java))
-        }
-    }
 
 }
+

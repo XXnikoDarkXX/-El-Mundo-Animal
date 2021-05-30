@@ -46,7 +46,7 @@ class Registro : AppCompatActivity() {
                                 Toast.makeText(contexto,"usuario creado correctamente",Toast.LENGTH_LONG).show()
                                 val user = auth.currentUser
 
-                                val usuario:Usuario=Usuario(nombre.text.toString(),nickname.text.toString(),email.text.toString(),contrasenia.text.toString(),0)
+                                val usuario:Usuario=Usuario(nombre.text.toString(),nickname.text.toString(),email.text.toString(),0)
                                 firebaseDB.collection("usuarios").document(email.text.toString()).set(usuario).addOnCompleteListener(this,
                                     OnCompleteListener { task ->
                                         if (task.isSuccessful) {

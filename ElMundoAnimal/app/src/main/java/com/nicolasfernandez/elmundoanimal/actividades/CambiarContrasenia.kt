@@ -36,90 +36,53 @@ class CambiarContrasenia : AppCompatActivity() {
 
     }
 
+
     /**
      * Funcion para cambiar contraseña de un usuario, primera comprobando las credenciales (email con password)que esten correctas
      * Y finalmente cambiando a la nueva contraseña
      */
     fun Cambiar(view: View) {
 
-        var usuario: Usuario = Usuario()
 
-        val docRef = Database.firebaseDB.collection("usuarios")
-            .document(firebaseAuth.currentUser.email.toString())
-        docRef.get().addOnSuccessListener { documentSnapshot ->
-            var user = documentSnapshot.toObject(Usuario::class.java)
-            if (user != null) {
-
-                usuario = user
-
-                if (editPassActual.text.toString()
-                        .equals(usuario.contrasenia) && editPassNueva.text.toString().equals(
-                        editPassNueva2.text.toString()
-                    )
-                ) {
-                    usuario.contrasenia=editPassNueva.text.toString()
-                    var user: FirebaseUser = firebaseAuth.currentUser
-
-                    val credential: AuthCredential =
-                        EmailAuthProvider.getCredential(user.email, editPassActual.text.toString())
+        var user: FirebaseUser = firebaseAuth.currentUser
 
 
-                    user?.reauthenticate(credential)?.addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            Toast.makeText(this, "Reautenticiacion completa", Toast.LENGTH_LONG)
-                                .show()
 
-                            user?.updatePassword(editPassNueva.text.toString())
-                                ?.addOnCompleteListener { task ->
-                                    if (task.isSuccessful) {
+        if (editPassNueva.text.toString().equals(editPassNueva2.text.toString())) {
 
-                                        Toast.makeText(
-                                            this,
-                                            "Contraseña Cambiada",
-                                            Toast.LENGTH_LONG
-                                        ).show()
+            val credential: AuthCredential =
+                EmailAuthProvider.getCredential(user.email, editPassActual.text.toString())
 
-                                        insertarOActualizarUsuario(usuario)
+            user?.reauthenticate(credential)?.addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Toast.makeText(this, "Reautenticiacion completa", Toast.LENGTH_LONG)
+                        .show()
+                    user?.updatePassword(editPassNueva.text.toString())
+                        ?.addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
 
-                                    }
+                                Toast.makeText(
+                                    this,"Contraseña Cambiada",Toast.LENGTH_LONG).show()
 
-                                }
+
+
+                            }
                         }
-                    }
+
 
                 } else {
-                    Toast.makeText(
-                        this,
-                        "Algunos de los campos estan incorrectos",
-                        Toast.LENGTH_LONG
-                    ).show()
+                    Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_LONG)
+                        .show()
                 }
 
             }
+        } else {
+            Toast.makeText(this, "Las contraseñas tienen que ser las mismas", Toast.LENGTH_LONG)
+                .show()
         }
-
-
     }
-
-    /**
-     * Funcion para insertar o acutalizar en la bbdd (firestore) el usuario pasado por parametros
-     */
-    fun insertarOActualizarUsuario(usuario: Usuario) {
-
-        firebaseDB.collection("usuarios").document(usuario.email).set(usuario).addOnCompleteListener(this,
-            OnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    //Toast.makeText( this,"Insertado/Actualizado correctamente", Toast.LENGTH_LONG).show()
-                    startActivity(Intent(this, Principal::class.java))
-
-                }else{
-                    Toast.makeText( this,"usuario no insertado/actualizdo en la colleccion", Toast.LENGTH_LONG).show()
-                }
-            })
-
-
-
-    }
-
-
 }
+
+
+
+
