@@ -33,23 +33,25 @@
                 android:layout_height="wrap_content"
                 android:text="@string/textoBuscar" />
 
-            <SearchView
+            <EditText
                 android:id="@+id/buscador"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-
+                android:padding="10dp"
+                android:drawableStart="@drawable/icono_buscar"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
                 android:queryHint="@string/txtBuscador"
                 android:layout_marginBottom="10dp"
+                android:textAlignment="center"
                 android:iconifiedByDefault="false"
                 android:background="@drawable/custom_rectangle"
                 android:queryBackground="@drawable/custom_rectangle"
                 android:submitBackground="@drawable/custom_rectangle">
 
 
-            </SearchView>
+            </EditText>
 
             <Button
                 android:id="@+id/btnBuscar"

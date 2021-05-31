@@ -6,12 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ListView
-import android.widget.Toast
+import android.widget.*
 import androidx.fragment.app.Fragment
 import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.actividades.ControlPeticionesAnimales
+import com.nicolasfernandez.elmundoanimal.actividades.FichaAnimal
 import com.nicolasfernandez.elmundoanimal.actividades.PeticionAniadirAnimales
 import com.nicolasfernandez.elmundoanimal.recycler.ListViewTiposEspecies
 
@@ -26,6 +25,8 @@ class Inicio : Fragment() {
     lateinit var btnPrueba: Button;
     lateinit var btnAniadirAnimales:Button
     lateinit var btnControl:Button
+    lateinit var buscador:EditText
+    lateinit var btnBuscar:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +46,9 @@ class Inicio : Fragment() {
         btnPrueba = view.findViewById(R.id.btnIrAyuda) as Button
         btnAniadirAnimales= view.findViewById<Button>(R.id.btnAniadirAnimales)
         btnControl=view.findViewById<Button>(R.id.btnControl)
+        buscador=view.findViewById<EditText>(R.id.buscador)
+        btnBuscar=view.findViewById<Button>(R.id.btnBuscar)
+
 
         btnPrueba.setOnClickListener(View.OnClickListener {
 
@@ -55,13 +59,26 @@ class Inicio : Fragment() {
 
         })
 
+        btnBuscar.setOnClickListener {
+            var bundle: Bundle?= Bundle()
+            if (!buscador.text.toString().equals("")) {
+                bundle?.putString("animalBuscado", buscador.text.toString())
+
+
+              val intent = Intent(activity, FichaAnimal::class.java)
+            if (bundle!=null){
+                intent.putExtras(bundle)
+            }
+             startActivity(intent)
+            }else{
+                Toast.makeText(view.context,"No has escrito nada",Toast.LENGTH_LONG).show()
+            }
+        }
+
+
 
         btnControl.setOnClickListener(View.OnClickListener {
 
-
-
-          //  val intent = Intent(activity, ControlPeticionesAnimales::class.java)
-           // startActivity(intent)
 
             val fragmentJuego = FragmentLoginAdministrador.newInstance()
             val transaction = activity?.supportFragmentManager?.beginTransaction()

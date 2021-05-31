@@ -1,9 +1,12 @@
 package com.nicolasfernandez.elmundoanimal.actividades
 
+import android.content.Intent
 import android.media.Image
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
@@ -23,32 +26,46 @@ import com.nicolasfernandez.elmundoanimal.constantes.Database
 import org.w3c.dom.Text
 
 class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
-    val txtDescripcion:TextView by lazy { findViewById<TextView>(R.id.txtDescripcion) }
-    val imgFoto:ImageView by lazy { findViewById<ImageView>(R.id.imgFoto) }
-    val txtTipo:TextView by lazy { findViewById<TextView>(R.id.txtTipo) }
-    val txtNombre:TextView by lazy { findViewById<TextView>(R.id.txtNombreAnimal) }
-    val cartaContenido:CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal) }
-    val cartaVideo:CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal2) }
+    val txtDescripcion: TextView by lazy { findViewById<TextView>(R.id.txtDescripcion) }
+    val imgFoto: ImageView by lazy { findViewById<ImageView>(R.id.imgFoto) }
+    val txtTipo: TextView by lazy { findViewById<TextView>(R.id.txtTipo) }
+    val txtNombre: TextView by lazy { findViewById<TextView>(R.id.txtNombreAnimal) }
+    val cartaContenido: CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal) }
+    val cartaVideo: CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal2) }
 
-    val loading:ProgressBar by lazy {findViewById<ProgressBar>(R.id.cargaFicha)  }
+    val loading: ProgressBar by lazy { findViewById<ProgressBar>(R.id.cargaFicha) }
     lateinit var animal: Animal
-    val reproductor:YouTubePlayerView by lazy { findViewById<YouTubePlayerView>(R.id.reproductor) }
+    var animalEncontrado:Boolean = false
+    val reproductor: YouTubePlayerView by lazy { findViewById<YouTubePlayerView>(R.id.reproductor) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ficha_animal)
-        var bundle:Bundle?=this.intent.extras
-        var nombreAnimalPeticion:String?=bundle?.getString("ficha")
-        if (nombreAnimalPeticion!=null){
-            sacarFichaAnimal("peticionAnimales",nombreAnimalPeticion)
+        var bundle: Bundle? = this.intent.extras
+        var nombreAnimalPeticion: String? = bundle?.getString("ficha")
+        if (nombreAnimalPeticion != null) {
+            sacarFichaAnimal("peticionAnimales", nombreAnimalPeticion)
+        }
+
+        var nombreAnimalBuscado: String? = bundle?.getString("animalBuscado")
+        if (nombreAnimalBuscado != null) {
+            buscarAnimal(nombreAnimalBuscado)
+        }
+
+        var fichaSeccionAnimal: String? = bundle?.getString("fichaSeccionAnimal")
+        var fichaEspecieAnimal: String? = bundle?.getString("fichaEspecieAnimal")
+        if (fichaEspecieAnimal != null && fichaSeccionAnimal != null) {
+            sacarFichaAnimal(fichaEspecieAnimal.toLowerCase(), fichaSeccionAnimal)
+
         }
 
 
-        var fichaSeccionAnimal:String?=bundle?.getString("fichaSeccionAnimal")
-        var fichaEspecieAnimal:String?=bundle?.getString("fichaEspecieAnimal")
-        if (fichaEspecieAnimal!=null&&fichaSeccionAnimal!=null){
-            sacarFichaAnimal(fichaEspecieAnimal.toLowerCase(),fichaSeccionAnimal)
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (!animalEncontrado) {
+                startActivity(Intent(this, Principal::class.java))
+            }
+        }, 3000)
 
-        }
+
 
     }
 
@@ -62,9 +79,9 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
 
             p1.loadVideo(animal.video)
             p1.play()
-            loading.visibility=View.GONE
-            cartaContenido.visibility=View.VISIBLE
-            cartaVideo.visibility=View.VISIBLE
+            loading.visibility = View.GONE
+            cartaContenido.visibility = View.VISIBLE
+            cartaVideo.visibility = View.VISIBLE
 
 
         }
@@ -77,29 +94,84 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
         TODO("Not yet implemented")
     }
 
-    fun sacarFichaAnimal(coleccion:String,documento:String){
+    fun sacarFichaAnimal(coleccion: String, documento: String) {
 
 
-            val docRef = Database.firebaseDB.collection(coleccion).document(documento)
-            docRef.get().addOnSuccessListener { documentSnapshot ->
+        val docRef = Database.firebaseDB.collection(coleccion).document(documento)
+        docRef.get().addOnSuccessListener { documentSnapshot ->
 
-                if (documentSnapshot != null) {
-                    val ave = documentSnapshot.toObject(Animal::class.java)
-                    //Toast.makeText(this,""+ documentSnapshot.data.toString(),Toast.LENGTH_LONG).show()
-                    if (ave != null) {
-                        animal=ave
-                    }
-                   txtDescripcion.text=animal.descripcion
-                    txtTipo.text="Tipo: "+animal.tipo
-                    Glide.with(this)
-                       .load(animal.foto)
-                       .into(imgFoto)
-                    txtNombre.text=animal.nombre
-                    reproductor.initialize(APIConstantes.APIYoutube,this)
-
+            if (documentSnapshot != null) {
+                val ave = documentSnapshot.toObject(Animal::class.java)
+                //Toast.makeText(this,""+ documentSnapshot.data.toString(),Toast.LENGTH_LONG).show()
+                if (ave != null) {
+                    animal = ave
                 }
+                txtDescripcion.text = animal.descripcion
+                txtTipo.text = "Tipo: " + animal.tipo
+                Glide.with(this)
+                    .load(animal.foto)
+                    .into(imgFoto)
+                txtNombre.text = animal.nombre
+                reproductor.initialize(APIConstantes.APIYoutube, this)
+
             }
+        }
 
 
     }
+
+
+    fun buscarAnimal(nombre: String) {
+
+        val array: ArrayList<String> = ArrayList()
+        array.add("aves")
+        array.add("insectos")
+        array.add("peces")
+        array.add("reptiles")
+        array.add("mamifero")
+
+
+
+
+            for (especie in array) {
+                if (!animalEncontrado) {
+
+
+                    val docRef =
+                        Database.firebaseDB.collection(especie.toString()).document(nombre)
+                    docRef.get().addOnSuccessListener { documentSnapshot ->
+
+                        if (documentSnapshot != null) {
+                            val ave = documentSnapshot.toObject(Animal::class.java)
+                            //Toast.makeText(this,""+ documentSnapshot.data.toString(),Toast.LENGTH_LONG).show()
+                            if (ave != null) {
+                                animalEncontrado=true
+                                animal = ave
+                                txtDescripcion.text = animal.descripcion
+                                txtTipo.text = "Tipo: " + animal.tipo
+                                Glide.with(this)
+                                    .load(animal.foto)
+                                    .into(imgFoto)
+                                txtNombre.text = animal.nombre
+                                reproductor.initialize(APIConstantes.APIYoutube, this)
+
+
+                            }
+
+
+
+                        }
+                    }
+
+            }
+
+        }
+
+
+
+
+
+    }
+
+
 }
