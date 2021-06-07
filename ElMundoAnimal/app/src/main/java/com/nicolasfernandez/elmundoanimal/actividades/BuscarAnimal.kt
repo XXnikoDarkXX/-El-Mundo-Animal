@@ -1,32 +1,15 @@
 package com.nicolasfernandez.elmundoanimal.actividades
 
-
-import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
 import com.nicolasfernandez.elmundoanimal.R
-import java.util.regex.Pattern
 
-class PurebaConsultaFirebase : AppCompatActivity() {
-
-
+class BuscarAnimal : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_pureba_consulta_firebase)
+        setContentView(R.layout.activity_buscar_animal)
+
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
 }
-

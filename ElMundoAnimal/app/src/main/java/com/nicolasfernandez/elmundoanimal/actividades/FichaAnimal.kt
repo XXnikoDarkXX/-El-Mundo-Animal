@@ -23,7 +23,6 @@ import com.nicolasfernandez.elmundoanimal.clases.Animal
 import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.constantes.APIConstantes
 import com.nicolasfernandez.elmundoanimal.constantes.Database
-import org.w3c.dom.Text
 
 class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
     val txtDescripcion: TextView by lazy { findViewById<TextView>(R.id.txtDescripcion) }
@@ -49,6 +48,14 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
         var nombreAnimalBuscado: String? = bundle?.getString("animalBuscado")
         if (nombreAnimalBuscado != null) {
             buscarAnimal(nombreAnimalBuscado)
+
+
+            Handler(Looper.getMainLooper()).postDelayed({
+                if (!animalEncontrado) {
+                    startActivity(Intent(this, Principal::class.java))
+                    Toast.makeText(this,"Animal no encontrado",Toast.LENGTH_LONG).show()
+                }
+            }, 3000)
         }
 
         var fichaSeccionAnimal: String? = bundle?.getString("fichaSeccionAnimal")
@@ -59,11 +66,7 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
         }
 
 
-        Handler(Looper.getMainLooper()).postDelayed({
-            if (!animalEncontrado) {
-                startActivity(Intent(this, Principal::class.java))
-            }
-        }, 3000)
+
 
 
 
@@ -111,7 +114,7 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
                 Glide.with(this)
                     .load(animal.foto)
                     .into(imgFoto)
-                txtNombre.text = animal.nombre
+                txtNombre.text = animal.nombre.capitalize()
                 reproductor.initialize(APIConstantes.APIYoutube, this)
 
             }

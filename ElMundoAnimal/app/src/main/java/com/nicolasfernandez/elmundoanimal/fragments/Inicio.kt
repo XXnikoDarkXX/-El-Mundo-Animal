@@ -12,6 +12,7 @@ import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.actividades.ControlPeticionesAnimales
 import com.nicolasfernandez.elmundoanimal.actividades.FichaAnimal
 import com.nicolasfernandez.elmundoanimal.actividades.PeticionAniadirAnimales
+import com.nicolasfernandez.elmundoanimal.actividades.PurebaConsultaFirebase
 import com.nicolasfernandez.elmundoanimal.recycler.ListViewTiposEspecies
 
 
@@ -54,7 +55,7 @@ class Inicio : Fragment() {
 
             Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(activity, ControlPeticionesAnimales::class.java)
+            val intent = Intent(activity, PurebaConsultaFirebase::class.java)
             startActivity(intent)
 
         })

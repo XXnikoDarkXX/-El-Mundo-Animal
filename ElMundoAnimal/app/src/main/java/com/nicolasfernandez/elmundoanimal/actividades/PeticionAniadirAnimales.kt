@@ -9,6 +9,7 @@ import com.google.android.gms.tasks.OnCompleteListener
 import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.clases.Animal
 import com.nicolasfernandez.elmundoanimal.constantes.Database
+import java.util.regex.Pattern
 
 class PeticionAniadirAnimales : AppCompatActivity() {
     val spinnerTipos: Spinner by lazy { findViewById<Spinner>(R.id.spinnerTipos) }
@@ -64,10 +65,10 @@ class PeticionAniadirAnimales : AppCompatActivity() {
 
     fun clickAniadir(view: View) {
 
-        var nombre: String = editTextNombreAnimal.text.toString()
+        var nombre: String = editTextNombreAnimal.text.toString().toLowerCase()
         var fotoUrl: String = editTextUrl.text.toString()
         var descripcion = editTextDescripcion.text.toString()
-        var video: String = editTextVideo.text.toString()
+        var video: String = obtenerValueVideo(editTextVideo.text.toString())
         val animal: Animal = Animal(tipo, nombre, fotoUrl, descripcion, video)
         Database.firebaseDB.collection("peticionAnimales").document(animal.nombre).set(animal)
             .addOnCompleteListener(this,
@@ -85,6 +86,22 @@ class PeticionAniadirAnimales : AppCompatActivity() {
                         ).show()
                     }
                 })
+
+    }
+
+
+
+    fun obtenerValueVideo(video:String): String {
+
+        val pattern = "(?<=youtu.be/|watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*"
+        val compiledPattern = Pattern.compile(pattern)
+        val matcher = compiledPattern.matcher(video)
+        var id:String="";
+        if (matcher.find()) {
+            id =matcher.group()
+
+        }
+        return id
 
     }
 }
