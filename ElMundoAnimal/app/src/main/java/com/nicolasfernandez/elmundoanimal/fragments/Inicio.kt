@@ -8,12 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicolasfernandez.elmundoanimal.R
-import com.nicolasfernandez.elmundoanimal.actividades.ControlPeticionesAnimales
-import com.nicolasfernandez.elmundoanimal.actividades.FichaAnimal
-import com.nicolasfernandez.elmundoanimal.actividades.PeticionAniadirAnimales
-import com.nicolasfernandez.elmundoanimal.actividades.PurebaConsultaFirebase
+import com.nicolasfernandez.elmundoanimal.actividades.*
+import com.nicolasfernandez.elmundoanimal.clases.Animal
+import com.nicolasfernandez.elmundoanimal.constantes.Database
 import com.nicolasfernandez.elmundoanimal.recycler.ListViewTiposEspecies
+import com.nicolasfernandez.elmundoanimal.recycler.SeccionAnimalesAdapter
 
 
 /**
@@ -22,7 +23,7 @@ import com.nicolasfernandez.elmundoanimal.recycler.ListViewTiposEspecies
  * create an instance of this fragment.
  */
 class Inicio : Fragment() {
-
+    lateinit var  listaAnimales:ArrayList<Animal>
     lateinit var btnPrueba: Button;
     lateinit var btnAniadirAnimales:Button
     lateinit var btnControl:Button
@@ -43,13 +44,13 @@ class Inicio : Fragment() {
         // Inflate the layout for this fragment
 
        val view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
-
+        listaAnimales= ArrayList<Animal>()
         btnPrueba = view.findViewById(R.id.btnIrAyuda) as Button
         btnAniadirAnimales= view.findViewById<Button>(R.id.btnAniadirAnimales)
         btnControl=view.findViewById<Button>(R.id.btnControl)
         buscador=view.findViewById<EditText>(R.id.buscador)
         btnBuscar=view.findViewById<Button>(R.id.btnBuscar)
-
+        obtenerTodosLosAnimales()
 
         btnPrueba.setOnClickListener(View.OnClickListener {
 
@@ -64,9 +65,9 @@ class Inicio : Fragment() {
             var bundle: Bundle?= Bundle()
             if (!buscador.text.toString().equals("")) {
                 bundle?.putString("animalBuscado", buscador.text.toString())
+                bundle?.putSerializable("animales",listaAnimales)
 
-
-              val intent = Intent(activity, FichaAnimal::class.java)
+              val intent = Intent(activity, BuscarAnimal::class.java)
             if (bundle!=null){
                 intent.putExtras(bundle)
             }
@@ -74,6 +75,10 @@ class Inicio : Fragment() {
             }else{
                 Toast.makeText(view.context,"No has escrito nada",Toast.LENGTH_LONG).show()
             }
+
+
+
+
         }
 
 
@@ -134,6 +139,47 @@ class Inicio : Fragment() {
     }
 
 
+    fun obtenerTodosLosAnimales() {
 
+        val array: ArrayList<String> = ArrayList()
+        array.add("aves")
+        array.add("insectos")
+        array.add("peces")
+        array.add("reptiles")
+        array.add("mamifero")
+
+
+
+
+        for (especie in array) {
+
+
+            Database.firebaseDB.collection(especie).get().addOnSuccessListener { result ->
+
+                for (document in result) {
+
+                    var animal = document.toObject(Animal::class.java) as Animal
+
+
+
+                        listaAnimales.add(animal)
+
+
+                }
+
+            }
+                .addOnFailureListener { exception ->
+
+                    //   Log.d(TAG, "Error getting documents: ", exception)
+                }
+
+
+        }
+
+
+
+
+
+    }
 
 }

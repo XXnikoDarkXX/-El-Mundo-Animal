@@ -1,6 +1,8 @@
 package com.nicolasfernandez.elmundoanimal.clases
 
-class Animal (var tipo:String, var nombre:String, var foto:String, var descripcion:String, var video:String) {
+import java.io.Serializable
+
+class Animal (var tipo:String, var nombre:String, var foto:String, var descripcion:String, var video:String):Serializable {
     constructor():this("","","","","")
 
     override fun toString(): String {
