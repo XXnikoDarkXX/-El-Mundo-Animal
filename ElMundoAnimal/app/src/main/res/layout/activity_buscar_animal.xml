@@ -7,12 +7,65 @@
     android:background="@color/azul"
     tools:context=".actividades.BuscarAnimal">
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerBuscador"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="371dp"
+        android:layout_height="515dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/cardView18" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView18"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/buscador"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:autofillHints="@string/buscar"
+                android:background="@drawable/custom_rectangle"
+                android:drawableStart="@drawable/icono_buscar"
+                android:hint="@string/txtBuscador"
+                android:iconifiedByDefault="false"
+                android:inputType="text"
+                android:padding="10dp"
+                android:queryBackground="@drawable/custom_rectangle"
+                android:submitBackground="@drawable/custom_rectangle"
+                android:textAlignment="center">
+
+
+            </EditText>
+
+            <Button
+                android:id="@+id/btnBuscar2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/button_round"
+                android:onClick="clickBuscar"
+                android:text="@string/buscar" />
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -70,7 +70,7 @@
                     <TextView
                         android:id="@+id/txtDescripcion"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:text="@string/descripcion"
@@ -79,9 +79,10 @@
                     <TextView
                         android:id="@+id/txtTipo"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="match_parent"
                         android:layout_marginStart="6dp"
                         android:textSize="18sp"
+                        android:padding="3dp"
                         android:textStyle="bold" />
 
                 </LinearLayout>

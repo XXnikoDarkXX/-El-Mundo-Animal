@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,46 +22,34 @@ import com.nicolasfernandez.elmundoanimal.recycler.SeccionAnimalesAdapter
 class BuscarAnimal : AppCompatActivity() {
     val AnimalesEncontrados:ArrayList<Animal> = ArrayList<Animal>()
     val recyclerBuscador: RecyclerView by lazy { findViewById<RecyclerView>(R.id.recyclerBuscador) }
+    val buscador: EditText by lazy { findViewById<EditText>(R.id.buscador) }
+    lateinit var listaAnimales:ArrayList<Animal>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buscar_animal)
         var bundle: Bundle? = this.intent.extras
         var nombreAnimalBuscado: String? = bundle?.getString("animalBuscado")
 
-        var listaAnimales:ArrayList<Animal> = bundle?.getSerializable("animales") as ArrayList<Animal>
+         listaAnimales = bundle?.getSerializable("animales") as ArrayList<Animal>
 
 
 
         if (nombreAnimalBuscado != null) {
-            //buscarAnimal(nombreAnimalBuscado)
 
-
-            /* Handler(Looper.getMainLooper()).postDelayed({
-                 if (!animalEncontrado) {
-                     startActivity(Intent(this, Principal::class.java))
-                     Toast.makeText(this,"Animal no encontrado", Toast.LENGTH_LONG).show()
-                 }
-             }, 3000)*/
-          //  buscarAnimal(nombreAnimalBuscado)
-            for (animal in listaAnimales){
-
-                if (animal.nombre.toLowerCase().contains(nombreAnimalBuscado.toLowerCase())&&animal.nombre.toLowerCase().get(0).equals(nombreAnimalBuscado.get(0))){
-
-                    AnimalesEncontrados.add(animal)
-                }
-
-            }
-
-
-            val adapter: SeccionAnimalesAdapter = SeccionAnimalesAdapter(this,AnimalesEncontrados)
-            recyclerBuscador.adapter=adapter
-            recyclerBuscador.layoutManager= LinearLayoutManager(this)
-
+            buscarAnimal(nombreAnimalBuscado)
         }
 
 
     }
 
+    fun clickBuscar(view: View) {
+        if (!buscador.text.toString().equals("")) {
+            buscarAnimal(buscador.text.toString())
+        }
+
+
+    }
+/*
     fun buscarAnimal(nombre: String) {
 
         val array: ArrayList<String> = ArrayList()
@@ -102,6 +91,25 @@ class BuscarAnimal : AppCompatActivity() {
         recyclerBuscador.adapter=adapter
         recyclerBuscador.layoutManager= LinearLayoutManager(this)
 
+
+
+    }*/
+
+    fun buscarAnimal(nombreAnimalBuscado:String){
+        AnimalesEncontrados.clear()
+        for (animal in listaAnimales){
+
+            if (animal.nombre.toLowerCase().contains(nombreAnimalBuscado.toLowerCase())&&animal.nombre.toLowerCase().get(0).equals(nombreAnimalBuscado.get(0))){
+
+                AnimalesEncontrados.add(animal)
+            }
+
+        }
+
+
+        val adapter: SeccionAnimalesAdapter = SeccionAnimalesAdapter(this,AnimalesEncontrados)
+        recyclerBuscador.adapter=adapter
+        recyclerBuscador.layoutManager= LinearLayoutManager(this)
 
 
     }

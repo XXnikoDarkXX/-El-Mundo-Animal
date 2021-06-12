@@ -84,9 +84,11 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
             p1.play()
             loading.visibility = View.GONE
             cartaContenido.visibility = View.VISIBLE
-            cartaVideo.visibility = View.VISIBLE
 
+            if (!animal.video.equals("")) {
+                cartaVideo.visibility = View.VISIBLE
 
+            }
         }
     }
 
