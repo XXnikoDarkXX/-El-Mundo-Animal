@@ -53,10 +53,7 @@ class FragmentJugar : Fragment() {
         scrollJugar=view.findViewById<ScrollView>(R.id.scrollJugar)
         btnJugar=view.findViewById<Button>(R.id.btnJugar)
         scrollJugar.visibility=View.GONE
-        //ListView para coger los primeros 5 usuarios
 
-    //    var jugadores: ArrayList<Usuario> = ArrayList<Usuario>()
-       // var jugadores: ArrayList<Usuario> = ArrayList<Usuario>()
         val jugadores:Array<Usuario>  = Array(5) { i -> Usuario() }
         firebaseDB.collection("usuarios")
             .limit(5).orderBy("ranking",Query.Direction.DESCENDING).get()
@@ -71,10 +68,6 @@ class FragmentJugar : Fragment() {
 
                 }
 
-                val a:String="hola"
-                if (a.equals("hola")){
-
-                }
                val adapter: ListViewRankingTop = ListViewRankingTop(this,jugadores)
                val lista: ListView = view.findViewById(R.id.listaMejoresJugadores)
 

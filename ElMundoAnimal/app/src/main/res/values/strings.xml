@@ -24,7 +24,7 @@
     <string name="tiposAnimales">Tipos de Animales</string>
     <string name="ayuda">Ayuda</string>
     <string name="irAyuda">Ir a Ayuda</string>
-    <string name="textoBuscar">Puedes buscar una ficha o video de un animal</string>
+    <string name="textoBuscar">Buscador de animales </string>
     <string name="puntuacion">Puntuacion</string>
     <string name="quieresJugar">¿Quieres jugar al Trivia Animal?</string>
     <string name="topRanking">Top Ranking</string>
@@ -66,4 +66,9 @@
     <string name="descripcionPregunta">DescPregunta</string>
     <string name="txtBuscador">Escribe el nombre del animal</string>
     <string name="idPregunta">ID Pregunta</string>
+    <string name="enviar">Enviar</string>
+    <string name="contacto">Contacto</string>
+    <string name="asunto">Asunto</string>
+    <string name="contenido">Contenido</string>
+    <string name="campoVacio">Campo Vacio</string>
 </resources>

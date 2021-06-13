@@ -1,6 +1,6 @@
 package com.nicolasfernandez.elmundoanimal.actividades
 
-import android.content.Intent
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -9,14 +9,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
-import com.nicolasfernandez.elmundoanimal.clases.Usuario
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.*
+import com.google.firebase.auth.AuthCredential
+import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.FirebaseUser
 import com.nicolasfernandez.elmundoanimal.R
-import com.nicolasfernandez.elmundoanimal.constantes.Database
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
-import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 
 
 class CambiarContrasenia : AppCompatActivity() {
@@ -46,40 +44,53 @@ class CambiarContrasenia : AppCompatActivity() {
 
         var user: FirebaseUser = firebaseAuth.currentUser
 
+        if (editPassActual.text.toString().equals("") || editPassNueva2.text.toString().equals("") || editPassNueva.text.toString().equals("")) {
+
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder.setTitle("Campos vacios")
+            builder.setMessage("Uno o mas campos estan vacios")
+            builder.setPositiveButton("Aceptar", null)
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+
+        } else if (editPassNueva.text.toString().equals(editPassNueva2.text.toString())) {
 
 
-        if (editPassNueva.text.toString().equals(editPassNueva2.text.toString())) {
+                val credential: AuthCredential =
+                    EmailAuthProvider.getCredential(user.email, editPassActual.text.toString())
 
-            val credential: AuthCredential =
-                EmailAuthProvider.getCredential(user.email, editPassActual.text.toString())
+                user?.reauthenticate(credential)?.addOnCompleteListener {
 
-            user?.reauthenticate(credential)?.addOnCompleteListener {
-                if (it.isSuccessful) {
-                    Toast.makeText(this, "Reautenticiacion completa", Toast.LENGTH_LONG)
-                        .show()
-                    user?.updatePassword(editPassNueva.text.toString())
-                        ?.addOnCompleteListener { task ->
-                            if (task.isSuccessful) {
+                    if (it.isSuccessful) {
+                        Toast.makeText(this, "Reautenticiacion completa", Toast.LENGTH_LONG)
+                            .show()
+                        user?.updatePassword(editPassNueva.text.toString())
+                            ?.addOnCompleteListener { task ->
+                                if (task.isSuccessful) {
 
-                                Toast.makeText(
-                                    this,"Contraseña Cambiada",Toast.LENGTH_LONG).show()
+                                    Toast.makeText(
+                                        this, "Contraseña Cambiada", Toast.LENGTH_LONG
+                                    ).show()
 
 
+                                }
 
                             }
-                        }
 
 
-                } else {
-                    Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_LONG)
-                        .show()
+                    } else {
+                        Toast.makeText(this, "Contraseña incorrecta", Toast.LENGTH_LONG)
+                            .show()
+                    }
+
                 }
 
+            } else {
+                Toast.makeText(this, "Las contraseñas tienen que ser las mismas", Toast.LENGTH_LONG)
+                    .show()
             }
-        } else {
-            Toast.makeText(this, "Las contraseñas tienen que ser las mismas", Toast.LENGTH_LONG)
-                .show()
-        }
+
     }
 }
 

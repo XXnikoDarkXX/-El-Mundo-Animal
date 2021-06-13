@@ -13,6 +13,7 @@ import android.widget.*
 import androidx.cardview.widget.CardView
 import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
+import com.nicolasfernandez.elmundoanimal.actividades.EnviarCorreo
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 
@@ -84,6 +85,18 @@ class FragmentPerfil : Fragment() {
             startActivity(intent)
 
         })
+
+        val imgContacto:ImageView = view.findViewById<ImageView>(R.id.imgContacto)
+        imgContacto.setOnClickListener(View.OnClickListener {
+            val intent = Intent(activity, EnviarCorreo::class.java)
+            startActivity(intent)
+
+        })
+
+
+
+
+
         return view
     }
 
