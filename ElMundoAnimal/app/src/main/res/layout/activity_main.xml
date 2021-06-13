@@ -37,14 +37,14 @@
         <Button
             android:id="@+id/inicioGoogle"
             android:layout_width="match_parent"
-            android:onClick="loginGoogle"
             android:layout_height="wrap_content"
             android:layout_marginBottom="6dp"
             android:background="@drawable/button_round"
             android:drawableStart="@drawable/icono_gmail"
+            android:onClick="loginGoogle"
             android:padding="10dp"
-            android:visibility="gone"
             android:text="@string/iniciarGoogle"
+            android:visibility="gone"
 
             />
 
@@ -52,12 +52,12 @@
             android:id="@+id/inicioEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="irALogInEmail"
             android:background="@drawable/button_round"
             android:drawableStart="@drawable/icono_email"
+            android:onClick="irALogInEmail"
             android:padding="10dp"
-            android:visibility="gone"
             android:text="@string/iniciarEmail"
+            android:visibility="gone"
 
 
             />
@@ -69,8 +69,8 @@
         style="@style/texto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         android:text="@string/noTienesCuenta"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/txtRegistro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -84,9 +84,24 @@
         android:text="@string/registro"
         android:textColor="@color/rojoOscuro"
         android:textSize="18sp"
-        android:visibility="gone"
         android:textStyle="bold|italic"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/txtCuenta"
-        app:layout_constraintStart_toStartOf="@+id/txtCuenta" />
+        app:layout_constraintStart_toStartOf="@+id/linearLayout" />
+
+    <TextView
+        android:id="@+id/txtRecuperarContrasenia"
+        style="@style/texto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:onClick="clickRecuperarContrasenia"
+        android:text="@string/olvidarContrasenia"
+        android:textSize="18sp"
+        android:textStyle="bold|italic"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/txtCuenta"
+        tools:visibility="gone" />
 </androidx.constraintlayout.widget.ConstraintLayout>

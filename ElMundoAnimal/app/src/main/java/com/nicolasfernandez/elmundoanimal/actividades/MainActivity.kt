@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
     private val btnEmail:Button by lazy { findViewById<Button>(R.id.inicioEmail) }
     private val txtInfo:TextView by lazy { findViewById<TextView>(R.id.txtCuenta) }
     private val txtRegistro:TextView by lazy { findViewById<TextView>(R.id.txtRegistro) }
+    private val txtRecuperarContrasenia:TextView by lazy { findViewById<TextView>(R.id.txtRecuperarContrasenia) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -121,6 +122,13 @@ class MainActivity : AppCompatActivity() {
             btnEmail.visibility=View.VISIBLE
             txtInfo.visibility=View.VISIBLE
             txtRegistro.visibility=View.VISIBLE
+            txtRecuperarContrasenia.visibility=View.VISIBLE
         }
+    }
+
+    fun clickRecuperarContrasenia(view: View) {
+        startActivity(Intent(this, RecuperarContrasenia::class.java))
+
+
     }
 }

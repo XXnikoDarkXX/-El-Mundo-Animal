@@ -16,19 +16,23 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.ElMundoAnimal">
-        <activity android:name=".actividades.EnviarCorreo"
+        <activity android:name=".actividades.RecuperarContrasenia"></activity>
+        <activity
+            android:name=".actividades.EnviarCorreo"
             android:screenOrientation="portrait">
-        <intent-filter>
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-            <action android:name="android.intent.action.SEND" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <data android:mimeType="message/rfc822" />
-        </intent-filter>
+                <action android:name="android.intent.action.SEND" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="message/rfc822" />
+            </intent-filter>
         </activity>
-        <activity android:name=".actividades.BuscarAnimal"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".actividades.BuscarAnimal"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".actividades.Juego"
             android:screenOrientation="portrait" />
