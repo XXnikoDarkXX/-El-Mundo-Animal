@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         verificarLoginUsuario()
+        Toast.makeText(this,""+Database.firebaseAuth.currentUser.email.toString(),Toast.LENGTH_LONG).show()
     }
 
     /**
@@ -46,12 +47,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loginGoogle(view: View) {
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken("AIzaSyAisqBuYfru21RxqOTdEwW1gYzUfFtLh60")
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken("365537516760-o045mide23gu6dsq8pef9up1avtsjnfj.apps.googleusercontent.com")
                 .requestEmail()
                 .build()
 
       val  mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-        val account = GoogleSignIn.getLastSignedInAccount(this)
 
         val intentGoogleSignIn=mGoogleSignInClient.signInIntent
         startActivityForResult(intentGoogleSignIn, GOOGLE_SIGN_IN)
@@ -84,6 +84,12 @@ class MainActivity : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                     if (task.isSuccessful) {
                         Toast.makeText(this,""+googleAccount.email.toString(),Toast.LENGTH_LONG).show()
+
+                        val actividadCarga:Intent= Intent(this,Carga::class.java)
+                        var bundle:Bundle=Bundle()//iniciamos la variable
+                        bundle.putString("Principal","Principal")
+                        actividadCarga.putExtras(bundle)
+                        this.startActivity(actividadCarga)
                     } else {
                         Toast.makeText(this@MainActivity, task.exception!!.message, Toast.LENGTH_LONG).show()
                     }
@@ -103,7 +109,13 @@ class MainActivity : AppCompatActivity() {
      * Funcion para cuando abra la app verifique que esta logueado
      */
     fun verificarLoginUsuario(){
-
+            if (firebaseAuth.currentUser!=null){
+                val actividadCarga:Intent= Intent(this,Carga::class.java)
+                var bundle:Bundle=Bundle()//iniciamos la variable
+                bundle.putString("Principal","Principal")
+                actividadCarga.putExtras(bundle)
+                this.startActivity(actividadCarga)
+            }
         if(firebaseAuth.currentUser!=null) {
             val docRef = Database.firebaseDB.collection("usuarios")
                 .document(firebaseAuth.currentUser.email.toString())
@@ -122,7 +134,7 @@ class MainActivity : AppCompatActivity() {
             btnEmail.visibility=View.VISIBLE
             txtInfo.visibility=View.VISIBLE
             txtRegistro.visibility=View.VISIBLE
-            txtRecuperarContrasenia.visibility=View.VISIBLE
+           txtRecuperarContrasenia.visibility=View.VISIBLE
         }
     }
 

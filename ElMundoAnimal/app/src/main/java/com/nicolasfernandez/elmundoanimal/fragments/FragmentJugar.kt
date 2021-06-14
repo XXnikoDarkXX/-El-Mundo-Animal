@@ -121,16 +121,20 @@ class FragmentJugar : Fragment() {
 
 
     fun puntuacionJugador( view: View, jugadores:Array<Usuario>){
-        for(jugador in jugadores){
-            if (jugador.email.equals(firebaseAuth.currentUser.email)){
-                val nombre: TextView = view.findViewById(R.id.nombreJugador)
-                val nick: TextView = view.findViewById(R.id.nicknameJugador)
+        val docRef = firebaseDB.collection("usuarios").document(firebaseAuth.currentUser.email.toString())
+        docRef.get().addOnSuccessListener { documentSnapshot ->
+            val user = documentSnapshot.toObject(Usuario::class.java)
+            if (user != null) {
+                if (user.email.equals(firebaseAuth.currentUser.email)) {
+                    val nombre: TextView = view.findViewById(R.id.nombreJugador)
+                    val nick: TextView = view.findViewById(R.id.nicknameJugador)
 
-                val puntos: TextView = view.findViewById(R.id.txtPuntuacionJuego)
+                    val puntos: TextView = view.findViewById(R.id.txtPuntuacionJuego)
 
-                nombre.text="Nombre: " +jugador.nombre
-                nick.text="Nickname: "+jugador.nickname
-                puntos.text= "Puntuacion: "+jugador.ranking +" puntos"
+                    nombre.text = "Nombre: " + user.nombre
+                    nick.text = "Nickname: " + user.nickname
+                    puntos.text = "Puntuacion: " + user.ranking + " puntos"
+                }
             }
         }
     }

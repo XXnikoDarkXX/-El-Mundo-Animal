@@ -16,7 +16,8 @@
         android:screenOrientation="portrait"
         android:supportsRtl="true"
         android:theme="@style/Theme.ElMundoAnimal">
-        <activity android:name=".actividades.RecuperarContrasenia"></activity>
+        <activity android:name=".actividades.CrearNombreNickGoogle"></activity>
+        <activity android:name=".actividades.RecuperarContrasenia" />
         <activity
             android:name=".actividades.EnviarCorreo"
             android:screenOrientation="portrait">
