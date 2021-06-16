@@ -21,10 +21,6 @@ import com.nicolasfernandez.elmundoanimal.recycler.ControlPeticionAdapter
 
         traerPeticionesAnimales()
 
-        /*val imgFoto:ImageView= findViewById<ImageView>(R.id.imgFotoAnimal)
-        Glide.with(this)
-            .load("http://www.estudiantes.info/ciencias_naturales/images/pinguino-trio.png")
-            .into(imgFoto)*/
 
     }
     fun traerPeticionesAnimales(){

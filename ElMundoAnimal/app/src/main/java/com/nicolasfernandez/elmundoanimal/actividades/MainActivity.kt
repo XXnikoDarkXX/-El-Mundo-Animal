@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         verificarLoginUsuario()
-        Toast.makeText(this,""+Database.firebaseAuth.currentUser.email.toString(),Toast.LENGTH_LONG).show()
+
     }
 
     /**
@@ -85,11 +85,7 @@ class MainActivity : AppCompatActivity() {
                     if (task.isSuccessful) {
                         Toast.makeText(this,""+googleAccount.email.toString(),Toast.LENGTH_LONG).show()
 
-                        val actividadCarga:Intent= Intent(this,Carga::class.java)
-                        var bundle:Bundle=Bundle()//iniciamos la variable
-                        bundle.putString("Principal","Principal")
-                        actividadCarga.putExtras(bundle)
-                        this.startActivity(actividadCarga)
+                        verificarLoginUsuario()
                     } else {
                         Toast.makeText(this@MainActivity, task.exception!!.message, Toast.LENGTH_LONG).show()
                     }
@@ -109,13 +105,7 @@ class MainActivity : AppCompatActivity() {
      * Funcion para cuando abra la app verifique que esta logueado
      */
     fun verificarLoginUsuario(){
-            if (firebaseAuth.currentUser!=null){
-                val actividadCarga:Intent= Intent(this,Carga::class.java)
-                var bundle:Bundle=Bundle()//iniciamos la variable
-                bundle.putString("Principal","Principal")
-                actividadCarga.putExtras(bundle)
-                this.startActivity(actividadCarga)
-            }
+
         if(firebaseAuth.currentUser!=null) {
             val docRef = Database.firebaseDB.collection("usuarios")
                 .document(firebaseAuth.currentUser.email.toString())
@@ -125,8 +115,12 @@ class MainActivity : AppCompatActivity() {
                     val actividadCarga:Intent= Intent(this,Carga::class.java)
                     var bundle:Bundle=Bundle()//iniciamos la variable
                     bundle.putString("Principal","Principal")
+
                     actividadCarga.putExtras(bundle)
                     this.startActivity(actividadCarga)
+                }else{
+                    startActivity(Intent(this, CrearNombreNickGoogle::class.java))
+
                 }
             }
         }else{

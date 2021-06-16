@@ -73,4 +73,6 @@
     <string name="campoVacio">Campo Vacio</string>
     <string name="olvidarContrasenia"><u>Recuperar contraseña</u></string>
     <string name="txtResetearContrasenia">Escribe a continuacion el correo electronico donde deseas resetar la contraseña</string>
+
+
 </resources>
