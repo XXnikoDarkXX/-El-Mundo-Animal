@@ -1,5 +1,6 @@
 package com.nicolasfernandez.elmundoanimal.actividades
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -27,6 +28,8 @@ class CambiarDatosUsuario : AppCompatActivity() {
      * Funcion para cambiar datos del perfil consultando a la bbdd
      */
     fun cambiar(view: View) {
+
+
         val nickname: EditText = findViewById<EditText>(R.id.editTextNickname)
         val nombre: EditText = findViewById<EditText>(R.id.editTextNombre)
 
@@ -38,9 +41,27 @@ class CambiarDatosUsuario : AppCompatActivity() {
             if (user != null) {
 
                 usuario = user
-                usuario.nickname = nickname.text.toString()
-                usuario.nombre = nombre.text.toString()
-                insertarOActualizarUsuario(usuario)
+                if(!(nickname.text.toString().equals("")&&nombre.text.toString().equals(""))){
+                    usuario.nickname = nickname.text.toString()
+                    usuario.nombre = nombre.text.toString()
+                    insertarOActualizarUsuario(usuario)
+                }else if (!nickname.text.toString().equals("")){
+                    usuario.nickname = nickname.text.toString()
+
+                    insertarOActualizarUsuario(usuario)
+                    }else if(!nombre.text.toString().equals("")){
+                    usuario.nombre = nombre.text.toString()
+                    insertarOActualizarUsuario(usuario)
+                }else{
+                    val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+                    builder.setTitle("Campos vacios")
+                    builder.setMessage("Uno o mas campos estan vacios")
+                    builder.setPositiveButton("Aceptar", null)
+                    val dialog: AlertDialog = builder.create()
+                    dialog.show()
+                }
+
+
 
             }
         }
@@ -90,7 +111,7 @@ class CambiarDatosUsuario : AppCompatActivity() {
 
     /**
      * Funcion para eliminar un usuario de nuestra aplicacion mediante diferentes consultas
-     * Para ello hemos comprobado que las contraseñas puestas en las actividad sean las mismas que el usuario al qu7e vamos a borrar
+     * Para ello hemos comprobado que las contraseñas puestas en las actividad sean las mismas que el usuario al que vamos a borrar
      * Tambien comprobamos las credenciales del usuario para luego hacer un borrado
      */
     fun eliminar(view: View) {
@@ -98,40 +119,56 @@ class CambiarDatosUsuario : AppCompatActivity() {
         val pass2: EditText = findViewById<EditText>(R.id.editTextPassActual2)
         var usuario: Usuario = Usuario()
 
-        val docRef = Database.firebaseDB.collection("usuarios")
-            .document(firebaseAuth.currentUser.email.toString())
-        docRef.get().addOnSuccessListener { documentSnapshot ->
-            var user = documentSnapshot.toObject(Usuario::class.java)
-            if (user != null) {
-                usuario = user
-                if (pass1.text.toString().equals(pass2.text.toString())
-                    && firebaseAuth.currentUser.email.toString().equals(usuario.email)
-                ) {
+
+        if(pass1.text.toString().equals("")||pass2.text.toString().equals("")){
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder.setTitle("Campos vacios")
+            builder.setMessage("Uno o mas campos estan vacios")
+            builder.setPositiveButton("Aceptar", null)
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
+        }else {
+
+            val docRef = Database.firebaseDB.collection("usuarios")
+                .document(firebaseAuth.currentUser.email.toString())
+            docRef.get().addOnSuccessListener { documentSnapshot ->
+                var user = documentSnapshot.toObject(Usuario::class.java)
+                if (user != null) {
+                    usuario = user
+                    if (pass1.text.toString().equals(pass2.text.toString())
+                        && firebaseAuth.currentUser.email.toString().equals(usuario.email)
+                    ) {
 
 
-                    var user: FirebaseUser = firebaseAuth.currentUser
+                        var user: FirebaseUser = firebaseAuth.currentUser
 
-                    val credential: AuthCredential =
-                        EmailAuthProvider.getCredential(user.email, pass1.text.toString())
+                        val credential: AuthCredential =
+                            EmailAuthProvider.getCredential(user.email, pass1.text.toString())
 
 
-                    user?.reauthenticate(credential)?.addOnCompleteListener {
-                        if (it.isSuccessful) {
-                            Toast.makeText(this, "Reautenticiacion completa", Toast.LENGTH_LONG)
-                                .show()
+                        user?.reauthenticate(credential)?.addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Toast.makeText(this, "Reautenticiacion completa", Toast.LENGTH_LONG)
+                                    .show()
 
-                            user?.delete().addOnCompleteListener {
-                                if (it.isSuccessful) {
-                                    borrarUsuario(usuario)
+                                user?.delete().addOnCompleteListener {
+                                    if (it.isSuccessful) {
+                                        borrarUsuario(usuario)
+                                    }
                                 }
-                            }
-                        }else{
-                            Toast.makeText(this, "La contraseña no es correcta", Toast.LENGTH_LONG).show()
+                            } else {
+                                Toast.makeText(
+                                    this,
+                                    "La contraseña no es correcta",
+                                    Toast.LENGTH_LONG
+                                ).show()
 
+                            }
                         }
+                    } else {
+                        Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG)
+                            .show()
                     }
-                } else {
-                    Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_LONG).show()
                 }
             }
         }

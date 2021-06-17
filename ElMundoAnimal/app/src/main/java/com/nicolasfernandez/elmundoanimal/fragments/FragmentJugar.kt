@@ -11,6 +11,7 @@ import androidx.cardview.widget.CardView
 import com.google.firebase.firestore.Query
 import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
+import com.nicolasfernandez.elmundoanimal.actividades.AyudaJuego
 import com.nicolasfernandez.elmundoanimal.actividades.ControlPeticionesAnimales
 import com.nicolasfernandez.elmundoanimal.actividades.Juego
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
@@ -32,6 +33,7 @@ class FragmentJugar : Fragment() {
     lateinit var pgCarga2:ProgressBar
     lateinit var scrollJugar:ScrollView
     lateinit var btnJugar:Button
+    lateinit var btnInfoJuego:Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +50,7 @@ class FragmentJugar : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_jugar, container, false)
 
 
-
+        btnInfoJuego=view.findViewById<Button>(R.id.btnInfoJuego)
         cardView2 = view.findViewById<CardView>(R.id.cardView2)
         scrollJugar=view.findViewById<ScrollView>(R.id.scrollJugar)
         btnJugar=view.findViewById<Button>(R.id.btnJugar)
@@ -85,6 +87,9 @@ class FragmentJugar : Fragment() {
             }
 
 
+        btnInfoJuego.setOnClickListener{
+            val intent = Intent(activity, AyudaJuego::class.java)
+            startActivity(intent)        }
             btnJugar.setOnClickListener {
                 val intent = Intent(activity, Juego::class.java)
                 startActivity(intent)

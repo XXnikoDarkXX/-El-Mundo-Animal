@@ -1,5 +1,6 @@
 package com.nicolasfernandez.elmundoanimal.fragments
 
+import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -53,18 +54,34 @@ class FragmentLoginAdministrador : Fragment() {
         txtInputPassAdmin=view.findViewById(R.id.txtInputPassAdmin) as TextInputEditText
 
         btnAceptar.setOnClickListener {
-            if (txtInputUser.text.toString().equals("admin")&&txtInputPassAdmin.text.toString().equals("admin")){
 
-                APIConstantes.userAdmin=true
-                  val intent = Intent(activity, ControlPeticionesAnimales::class.java)
-                 startActivity(intent)
-                Toast.makeText(view.context, "Contraseña correcta bienvenido Administrador :D", Toast.LENGTH_LONG).show()
+            if (txtInputUser.text.toString().equals("")||txtInputPassAdmin.text.toString().equals("")){
+                val builder: AlertDialog.Builder = AlertDialog.Builder(view.context)
+                builder.setTitle("Campos vacios")
+                builder.setMessage("Uno o mas campos estan vacios")
+                builder.setPositiveButton("Aceptar", null)
+                val dialog: AlertDialog = builder.create()
+                dialog.show()
+            }else {
 
-            }else{
-                Toast.makeText(view.context, "campos incorrectos", Toast.LENGTH_LONG).show()
+                if (txtInputUser.text.toString()
+                        .equals("admin") && txtInputPassAdmin.text.toString().equals("admin")
+                ) {
 
+                    APIConstantes.userAdmin = true
+                    val intent = Intent(activity, ControlPeticionesAnimales::class.java)
+                    startActivity(intent)
+                    Toast.makeText(
+                        view.context,
+                        "Contraseña correcta bienvenido Administrador :D",
+                        Toast.LENGTH_LONG
+                    ).show()
+
+                } else {
+                    Toast.makeText(view.context, "campos incorrectos", Toast.LENGTH_LONG).show()
+
+                }
             }
-
 
         }
 

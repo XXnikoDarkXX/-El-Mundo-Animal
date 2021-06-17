@@ -73,6 +73,18 @@
     <string name="campoVacio">Campo Vacio</string>
     <string name="olvidarContrasenia"><u>Recuperar contraseña</u></string>
     <string name="txtResetearContrasenia">Escribe a continuacion el correo electronico donde deseas resetar la contraseña</string>
-
+    <string name="txtEstaAplicacion">¿Qué es el Mundo Animal?</string>
+    <string name="txtDescripcion">Es una app Android para el aprendizaje de los niños sobre el mundo animal</string>
+    <string name="esSeguro">¿Es seguro para los niños?</string>
+    <string name="txtSafeForWork">Si, es totalmente seguro no contiene ningun tipo de anuncios ni pagos que puedan ocasionar alguna incidencia
+    </string>
+    <string name="bugs">Seguramente sea por no actualizar a una version mas nueva, se recomienda siempre descargarla e instalar
+    desde las tiendas de app oficiales</string>
+    <string name="txtNoFuncion">¿No funciona correctamente?</string>
+    <string name="version">Version</string>
+    <string name="txtVersion">El Mundo Animal v.1.6</string>
+    <string name="txtJuego">¿Que es el juego?</string>
+    <string name="txtJuegoDescripcion">Es un trivia academico donde se le preguntara diversos animales tienes 4 posibles respuestas,
+    y las preguntas son ilimitadas, ya que tienes 3 vidas al perder la puntuacion se te guardara como usuario</string>
 
 </resources>

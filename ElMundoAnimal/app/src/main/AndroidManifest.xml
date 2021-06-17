@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.nicolasfernandez.elmundoanimal">
+    package="com.nicolasfernandez.elmundoanimal" >
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -15,13 +15,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ElMundoAnimal">
-        <activity android:name=".actividades.CrearNombreNickGoogle"  android:screenOrientation="portrait"/>
-        <activity android:name=".actividades.RecuperarContrasenia"
-            android:screenOrientation="portrait"/>
+        android:theme="@style/Theme.ElMundoAnimal" >
+        <activity android:name=".actividades.AyudaJuego"   android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".actividades.ActividadAyuda"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".actividades.CrearNombreNickGoogle"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".actividades.RecuperarContrasenia"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".actividades.EnviarCorreo"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
 
@@ -75,7 +83,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".actividades.MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

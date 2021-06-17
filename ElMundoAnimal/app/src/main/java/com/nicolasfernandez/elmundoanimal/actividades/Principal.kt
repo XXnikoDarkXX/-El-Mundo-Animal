@@ -70,7 +70,7 @@ class Principal : AppCompatActivity() {
         docRef.get().addOnSuccessListener { documentSnapshot ->
             val user = documentSnapshot.toObject(Usuario::class.java)
             if (user != null) {
-                Toast.makeText(this,"Bienvenido"+user.nombre,Toast.LENGTH_LONG).show()
+                Toast.makeText(this,"Bienvenido "+user.nombre,Toast.LENGTH_LONG).show()
             }
         }
 

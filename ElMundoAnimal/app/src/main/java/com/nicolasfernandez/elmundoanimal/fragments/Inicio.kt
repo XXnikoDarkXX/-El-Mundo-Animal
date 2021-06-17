@@ -24,7 +24,7 @@ import com.nicolasfernandez.elmundoanimal.recycler.SeccionAnimalesAdapter
  */
 class Inicio : Fragment() {
     lateinit var  listaAnimales:ArrayList<Animal>
-    lateinit var btnPrueba: Button;
+    lateinit var btnAyuda: Button;
     lateinit var btnAniadirAnimales:Button
     lateinit var btnControl:Button
     lateinit var buscador:EditText
@@ -45,18 +45,18 @@ class Inicio : Fragment() {
 
        val view: View = inflater.inflate(R.layout.fragment_inicio, container, false)
         listaAnimales= ArrayList<Animal>()
-        btnPrueba = view.findViewById(R.id.btnIrAyuda) as Button
+        btnAyuda = view.findViewById(R.id.btnIrAyuda) as Button
         btnAniadirAnimales= view.findViewById<Button>(R.id.btnAniadirAnimales)
         btnControl=view.findViewById<Button>(R.id.btnControl)
         buscador=view.findViewById<EditText>(R.id.buscador)
         btnBuscar=view.findViewById<Button>(R.id.btnBuscar)
         obtenerTodosLosAnimales()
 
-        btnPrueba.setOnClickListener(View.OnClickListener {
+        btnAyuda.setOnClickListener(View.OnClickListener {
 
-            Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
 
-            val intent = Intent(activity, PurebaConsultaFirebase::class.java)
+
+            val intent = Intent(activity, ActividadAyuda::class.java)
             startActivity(intent)
 
         })
@@ -99,7 +99,6 @@ class Inicio : Fragment() {
 
         btnAniadirAnimales.setOnClickListener(View.OnClickListener {
 
-            Toast.makeText(view.context, "prueba", Toast.LENGTH_LONG).show()
 
             val intent = Intent(activity, PeticionAniadirAnimales::class.java)
             startActivity(intent)

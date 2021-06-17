@@ -188,6 +188,7 @@ class Juego : AppCompatActivity() {
         }
 
         ponerPreguntaAleatoria(preguntasRestantes)
+
     }
 
     /**

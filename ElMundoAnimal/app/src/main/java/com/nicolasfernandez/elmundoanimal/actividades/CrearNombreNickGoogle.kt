@@ -12,8 +12,8 @@ import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.constantes.Database
 
 class CrearNombreNickGoogle : AppCompatActivity() {
-   val  editTextNickName :EditText by lazy { findViewById(R.id.editTextNickName) }
-    val  editTextNombre :EditText by lazy { findViewById(R.id.editTextNombre) }
+    val editTextNickName: EditText by lazy { findViewById(R.id.editTextNickName) }
+    val editTextNombre: EditText by lazy { findViewById(R.id.editTextNombre) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,28 +22,45 @@ class CrearNombreNickGoogle : AppCompatActivity() {
     }
 
 
-
     fun clickRegistroGoogle(view: View) {
 
+        if (editTextNickName.text.toString().equals("") || editTextNombre.text.toString()
+                .equals("")
+        ) {
 
 
-        val usuario: Usuario =
-            Usuario(editTextNombre.text.toString(),editTextNickName.text.toString(), Database.firebaseAuth.currentUser.email,0)
-        Database.firebaseDB.collection("usuarios").document(Database.firebaseAuth.currentUser.email.toString()).set(usuario).addOnCompleteListener(this,
-            OnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Toast.makeText( this,"Insertado correctamente", Toast.LENGTH_LONG).show()
-                    val actividadCarga: Intent = Intent(this,Carga::class.java)
-                    var bundle:Bundle=Bundle()//iniciamos la variable
-                    bundle.putString("Principal","Principal")
 
-                    actividadCarga.putExtras(bundle)
-                    this.startActivity(actividadCarga)
-                }else{
-                    Toast.makeText( this,"usuario no insertado en la colleccion", Toast.LENGTH_LONG).show()
-                }
-            })
+        } else {
 
+            val usuario: Usuario =
+                Usuario(
+                    editTextNombre.text.toString(),
+                    editTextNickName.text.toString(),
+                    Database.firebaseAuth.currentUser.email,
+                    0
+                )
+            Database.firebaseDB.collection("usuarios")
+                .document(Database.firebaseAuth.currentUser.email.toString()).set(usuario)
+                .addOnCompleteListener(this,
+                    OnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            Toast.makeText(this, "Insertado correctamente", Toast.LENGTH_LONG)
+                                .show()
+                            val actividadCarga: Intent = Intent(this, Carga::class.java)
+                            var bundle: Bundle = Bundle()//iniciamos la variable
+                            bundle.putString("Principal", "Principal")
+
+                            actividadCarga.putExtras(bundle)
+                            this.startActivity(actividadCarga)
+                        } else {
+                            Toast.makeText(
+                                this,
+                                "usuario no insertado en la colleccion",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+                    })
+        }
 
     }
 }

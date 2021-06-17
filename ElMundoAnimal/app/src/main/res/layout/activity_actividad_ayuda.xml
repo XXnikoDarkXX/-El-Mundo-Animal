@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azul"
+    tools:context=".actividades.ActividadAyuda">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="6dp"
+
+        app:layout_constraintVertical_bias="0.485">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txtQueEsjUEGO"
+                style="@style/texto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/verdeClaro2"
+                android:text="@string/txtEstaAplicacion"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/txtJuegoDes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:text="@string/txtDescripcion"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtsafeJuego"
+                style="@style/texto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/verdeClaro2"
+                android:text="@string/esSeguro"
+                android:textAlignment="center"  />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:layout_height="wrap_content"
+                android:text="@string/txtSafeForWork" />
+
+            <TextView
+                android:id="@+id/textView21"
+                style="@style/texto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/verdeClaro2"
+                android:text="@string/txtNoFuncion"
+                android:textAlignment="center"  />
+
+            <TextView
+                android:id="@+id/textView22"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:layout_height="wrap_content"
+                android:text="@string/bugs" />
+
+            <TextView
+                android:id="@+id/textView23"
+                style="@style/texto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/verdeClaro2"
+                android:text="@string/version"
+                android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textView24"
+                android:layout_width="match_parent"
+                android:layout_margin="5dp"
+                android:textSize="18sp"
+                android:layout_height="wrap_content"
+                android:text="@string/txtVersion" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>
