@@ -20,20 +20,19 @@ import com.nicolasfernandez.elmundoanimal.recycler.ListViewRankingTop
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [FragmentJugar.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment de Jugar
+ * Aqui tendremos la informacion y menu del juego como la puntuacion del jugador, informacion de ayuda del juego, asi como los
+ * 5 mejores jugadores en puntaucion
+ *
  */
 class FragmentJugar : Fragment() {
 
-    lateinit var cardView2: CardView
-    lateinit var cardView4: CardView
-    lateinit var cardView5: CardView
-    lateinit var cardView6: CardView
-    lateinit var pgCarga2:ProgressBar
-    lateinit var scrollJugar:ScrollView
-    lateinit var btnJugar:Button
-    lateinit var btnInfoJuego:Button
+    lateinit var cardView2: CardView//un cardview
+
+    lateinit var pgCarga2:ProgressBar//un loading
+    lateinit var scrollJugar:ScrollView//un scroll para las card
+    lateinit var btnJugar:Button//btn para ir al juego
+    lateinit var btnInfoJuego:Button//btn para ir a la ayuda del juego
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,7 +123,10 @@ class FragmentJugar : Fragment() {
             }
     }
 
-
+    /**
+     * Funcion para obtener la puntuacion del jugador logueado
+     * @param jugadores lista de jugadores
+     */
     fun puntuacionJugador( view: View, jugadores:Array<Usuario>){
         val docRef = firebaseDB.collection("usuarios").document(firebaseAuth.currentUser.email.toString())
         docRef.get().addOnSuccessListener { documentSnapshot ->
@@ -144,52 +146,5 @@ class FragmentJugar : Fragment() {
         }
     }
 
-/*
-No sirve
-    fun rankingTop5(jugadores: ArrayList<Usuario>):Array<Usuario> {
-        val array:Array<Usuario>  = Array(5) { i -> Usuario() }
-
-        for (i in 0..jugadores.size - 1) {
-
-            for (j in 0..jugadores.size - 1) {
-                if (!(j == jugadores.size)) {
-                    if (jugadores.get(i).ranking > jugadores.get(j).ranking) {
-                        comprobarArray5(array, jugadores.get(i))
-                        break
-                    }
-                }
-
-            }
-        }
-        return array
-    }
-*//*
-    /**
-     * Funcion para comprobar si jugador tiene mayor puntuacion que los jugadores del array
-     * @param jugador jugador que vamos a comprobar que tenga mas puntuacion que los jugadores del array
-     * @param array de Usuario donde contenemos a los jugadores con mayor ranking en el momento)
-     */
-    fun comprobarArray5(array: Array<Usuario>,jugador :Usuario){
-
-
-        for (i  in 0.. array.size-1){
-
-            if (array[i].nombre.equals("")){//si es null el espacio del array metemos al jugador
-                array[i.toInt()]=jugador
-                break
-            }
-            //Comprobamos que jugador no este ya en el array y si no lo esta lo metemos en caso de que tenga mayor puntuacion
-            //que algun jugador del array
-
-            if (jugador.ranking>array[i].ranking){
-
-                comprobarArray5(array,array[i.toInt()])
-                array[i.toInt()]= jugador
-                break
-            }
-
-
-        }
-    }*/
 
 }

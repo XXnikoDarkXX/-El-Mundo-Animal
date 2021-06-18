@@ -16,16 +16,15 @@ import com.google.firebase.auth.FirebaseUser
 import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
 
-
+/**
+ * Actividad para poder cambiar la contraseña de login del usuario
+ */
 class CambiarContrasenia : AppCompatActivity() {
-    val linearCarga: LinearLayout by lazy { findViewById<LinearLayout>(R.id.linearCarga) }
-    val cardView11: CardView by lazy { findViewById<CardView>(R.id.cardView11) }
-    val cardView12: CardView by lazy { findViewById<CardView>(R.id.cardView12) }
-    val btnCambiar: Button by lazy { findViewById<Button>(R.id.btnCambiar) }
-    val txtInfoCambiar: TextView by lazy { findViewById<TextView>(R.id.txtLoginAdmin) }
-    val editPassActual: TextInputEditText by lazy { findViewById<TextInputEditText>(R.id.editPassActual) }
-    val editPassNueva: TextInputEditText by lazy { findViewById<TextInputEditText>(R.id.editPassNueva) }
-    val editPassNueva2: TextInputEditText by lazy { findViewById<TextInputEditText>(R.id.editPassNueva2) }
+
+    val editPassActual: TextInputEditText by lazy { findViewById<TextInputEditText>(R.id.editPassActual) }//Contraseña actual
+    val editPassNueva: TextInputEditText by lazy { findViewById<TextInputEditText>(R.id.editPassNueva) }//contraseña nueva
+    val editPassNueva2: TextInputEditText by lazy { findViewById<TextInputEditText>(R.id.editPassNueva2) }//Repiticion de la contraseña nueva
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +37,8 @@ class CambiarContrasenia : AppCompatActivity() {
     /**
      * Funcion para cambiar contraseña de un usuario, primera comprobando las credenciales (email con password)que esten correctas
      * Y finalmente cambiando a la nueva contraseña
+     * @param view vista en este caso un boton
+     * Contiene varios filtros en caso de que algun campo este vacio, la contraseña sea incorrecta....
      */
     fun Cambiar(view: View) {
 

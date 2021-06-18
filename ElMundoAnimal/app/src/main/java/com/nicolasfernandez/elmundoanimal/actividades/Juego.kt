@@ -17,23 +17,28 @@ import com.nicolasfernandez.elmundoanimal.constantes.Database
 import java.util.Random
 
 
+/**
+ * /
+ * Actividad Juego, en esta actividad es donde transcurrira todo el proceso de un trivia comenzando por las preguntas hasta terminar
+ */
 class Juego : AppCompatActivity() {
-    val txtVida: TextView by lazy { findViewById<TextView>(R.id.txtVida) }
-    val txtIdPregunta: TextView by lazy { findViewById<TextView>(R.id.txtIdPregunta) }
-    val cargaJuego :ProgressBar by lazy { findViewById(R.id.cargaJuego) }
-    val txtPuntuacionJugador: TextView by lazy { findViewById<TextView>(R.id.txtPuntuacionJugador) }
+    val txtVida: TextView by lazy { findViewById<TextView>(R.id.txtVida) }//Muestra el total de vidas que tiene en partida el usuario
+    val txtIdPregunta: TextView by lazy { findViewById<TextView>(R.id.txtIdPregunta) }//Muestra la id de la pregunta
+    val cargaJuego :ProgressBar by lazy { findViewById(R.id.cargaJuego) }//la carga de la pregunta
+    val txtPuntuacionJugador: TextView by lazy { findViewById<TextView>(R.id.txtPuntuacionJugador) }//Muestra la puntuacion el jugador
 
-    val txtPregunta: TextView by lazy { findViewById(R.id.txtPregunta) }
-    var contador: Int = 3
-    val btnA: Button by lazy { findViewById<Button>(R.id.btnA) }
-    val btnB: Button by lazy { findViewById<Button>(R.id.btnB) }
-    val btnC: Button by lazy { findViewById<Button>(R.id.btnC) }
-    val btnD: Button by lazy { findViewById<Button>(R.id.btnD) }
-    val imgAnimal: ImageView by lazy { findViewById(R.id.imgAnimal) }
-    var preguntasTotales: ArrayList<Pregunta> = ArrayList<Pregunta>()
-    val preguntasFinalizadas: ArrayList<Pregunta> = ArrayList<Pregunta>()
-    var puntuacion:Int = 0
-    lateinit var jugador:Usuario
+    val txtPregunta: TextView by lazy { findViewById(R.id.txtPregunta) }//texto de la pregunta
+    var contador: Int = 3//contador de vidas
+    val btnA: Button by lazy { findViewById<Button>(R.id.btnA) }//boton a
+    val btnB: Button by lazy { findViewById<Button>(R.id.btnB) }//boton b
+    val btnC: Button by lazy { findViewById<Button>(R.id.btnC) }//boton c
+    val btnD: Button by lazy { findViewById<Button>(R.id.btnD) }//boton d
+    val imgAnimal: ImageView by lazy { findViewById(R.id.imgAnimal) }//img de la pregunta
+    var preguntasTotales: ArrayList<Pregunta> = ArrayList<Pregunta>()//array list con todas las preguntas de la bbdd esto para hacer
+    //las consultas mas rapidas
+    val preguntasFinalizadas: ArrayList<Pregunta> = ArrayList<Pregunta>()//arraylist con las preguntas finalizadas
+    var puntuacion:Int = 0//puntuacion del usuario
+    lateinit var jugador:Usuario//jugador
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_juego)
@@ -65,25 +70,6 @@ class Juego : AppCompatActivity() {
 
         btnD.setOnClickListener {
             clickearBoton(btnD)
-            /*var preguntas = preguntasTotales
-            Toast.makeText(this, "" + preguntasTotales.size, Toast.LENGTH_LONG).show()
-            var comprobacion:Boolean=false
-            for (preg in preguntas) {
-                if (this.txtIdPregunta.text.toString().equals(preg.id)) {
-                    if (preg.correcto.equals(btnD.text.toString())) {
-                        comprobacion = true
-                    }
-                }
-            }
-
-            if (comprobacion){
-                comprobarPreguntas(preguntas)
-
-            }else{
-                contador--
-                txtVida.text ="Total de vidas:"+ " " + contador
-                Toast.makeText(this,"Fallastes ",Toast.LENGTH_LONG).show()
-            }*/
 
         }
 
@@ -91,7 +77,9 @@ class Juego : AppCompatActivity() {
     }
 
 
-
+    /**
+     * Funcion que se ejecuta al iniciar la activid la cual nos servira para cargar  y mostrar la primera pregunta
+     */
     fun iniciarJuego() {
 
         obtenerPreguntas()
@@ -105,16 +93,10 @@ class Juego : AppCompatActivity() {
 
 
     }
-/*
 
-    fun borrarAnimalBBDD(id:String ){
-        Database.firebaseDB.collection("juego_usuario").document(id).delete().addOnCompleteListener {
-
-
-        }
-
-    }
-*/
+    /**
+     * Función para obtener todas las preguntas de la bbdd y almacenarlas en una lista
+     */
     fun obtenerPreguntas() {
         Database.firebaseDB.collection("juego").get().addOnSuccessListener { result ->
             val arrrayPreguntas: ArrayList<Pregunta> = ArrayList<Pregunta>()
@@ -165,14 +147,16 @@ class Juego : AppCompatActivity() {
 
     }
 
-
+    /**
+     * Funcion para generar numero random entre dos intervalos
+     */
     fun rand(start: Int, end: Int): Int {
         require(start <= end) { "Illegal Argument" }
         return (start..end).random()
     }
 
     /**
-     * Funcion para eliminar las preguntas ya contestadas durante el transcurso del juego
+     * Funcion para eliminar  ya contestadas durante el transcurso del juego (las preguntas de la lista de preguntas totales)
      * @param preguntas: Coleccion con las preguntas de la bbddd
      */
     fun comprobarPreguntas(preguntas: ArrayList<Pregunta>) {
@@ -192,8 +176,11 @@ class Juego : AppCompatActivity() {
     }
 
     /**
-     * Funcion para que cuando clicke
-     */
+     * Funcion para que cuando clicke un boton realice las diferentes comprobaciones
+     * ya sea terminar el juego porque tienes 0 de vida
+     * comprobar si has acertado, restar vida, incluido generar nueva pregunta
+     * @param boton boton del cual ha pulsado
+     * */
     fun clickearBoton(boton: Button) {
 
         if (this.contador == 0) {
@@ -246,7 +233,9 @@ class Juego : AppCompatActivity() {
         }
     }
 
-
+    /**
+     * Funcion para obtener la puntuacion del jugador (a la variable jugador le cargamos el usuarios de la bbdd)
+     */
     fun puntuacionJugador(){
 
 
@@ -272,7 +261,10 @@ class Juego : AppCompatActivity() {
 
     }
 
-
+    /**
+     * Funcion para terminar el juego y volver a la pantalla principal
+     * tambien insertaremos la nueva puntuacion que ha conseguido el jugador
+     */
     fun terminarJuego(){
         jugador.ranking+=puntuacion
         Database.firebaseDB.collection("usuarios").document(jugador.email.toString()).set(jugador).addOnCompleteListener(this,

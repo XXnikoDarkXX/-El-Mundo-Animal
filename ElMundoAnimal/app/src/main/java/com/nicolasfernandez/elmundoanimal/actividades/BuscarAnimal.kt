@@ -19,11 +19,17 @@ import com.nicolasfernandez.elmundoanimal.constantes.Database
 import com.nicolasfernandez.elmundoanimal.recycler.ControlPeticionAdapter
 import com.nicolasfernandez.elmundoanimal.recycler.SeccionAnimalesAdapter
 
+/**
+ * Actividad para poder buscar un animal de la base de datos y cargarlo en una lista
+ * Recibe por bundle el nombre que el usuario ha escrito y comprueba en la bbdd similitudes y por ultimo lo muestra en un recycler
+ *
+ * */
 class BuscarAnimal : AppCompatActivity() {
-    val AnimalesEncontrados:ArrayList<Animal> = ArrayList<Animal>()
-    val recyclerBuscador: RecyclerView by lazy { findViewById<RecyclerView>(R.id.recyclerBuscador) }
-    val buscador: EditText by lazy { findViewById<EditText>(R.id.buscador) }
-    lateinit var listaAnimales:ArrayList<Animal>
+    val AnimalesEncontrados:ArrayList<Animal> = ArrayList<Animal>()//array list con los animales encontrados
+    val recyclerBuscador: RecyclerView by lazy { findViewById<RecyclerView>(R.id.recyclerBuscador) }//Lista que usaremos para mostrar los animales
+    val buscador: EditText by lazy { findViewById<EditText>(R.id.buscador) }//Buscador que usaremos para recoger la palabras de animal a mostrar
+    lateinit var listaAnimales:ArrayList<Animal>//Lista total de animales de la bbdd usaremos esto pues es mas rápido consultar una vez la
+    //base de datos que estar todo rato haciéndolo
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_buscar_animal)
@@ -42,6 +48,10 @@ class BuscarAnimal : AppCompatActivity() {
 
     }
 
+    /**
+     * Funcion para cuando hagamos click al boton llame a buscarAnimal()
+     * @param view vista en este caso un boton
+     */
     fun clickBuscar(view: View) {
         if (!buscador.text.toString().equals("")) {
             buscarAnimal(buscador.text.toString())
@@ -49,52 +59,12 @@ class BuscarAnimal : AppCompatActivity() {
 
 
     }
-/*
-    fun buscarAnimal(nombre: String) {
 
-        val array: ArrayList<String> = ArrayList()
-        array.add("aves")
-        array.add("insectos")
-        array.add("peces")
-        array.add("reptiles")
-        array.add("mamifero")
-
-        val listaAnimales: ArrayList<Animal> = ArrayList<Animal>()
-
-
-        for (especie in array) {
-
-
-            Database.firebaseDB.collection(especie).get().addOnSuccessListener { result ->
-
-                for (document in result) {
-
-                    var animal = document.toObject(Animal::class.java) as Animal
-
-                    if (animal.nombre.contains(nombre)) {
-
-                        Toast.makeText(this, ""+animal.nombre, Toast.LENGTH_LONG).show()
-                        listaAnimales.add(animal)
-                    }
-                }
-
-            }
-                .addOnFailureListener { exception ->
-                    Toast.makeText(this, "" + exception, Toast.LENGTH_LONG).show()
-                    //   Log.d(TAG, "Error getting documents: ", exception)
-                }
-
-
-        }
-
-        val adapter: SeccionAnimalesAdapter = SeccionAnimalesAdapter(this,listaAnimales)
-        recyclerBuscador.adapter=adapter
-        recyclerBuscador.layoutManager= LinearLayoutManager(this)
-
-
-
-    }*/
-
+    /**
+     * Funcion para encontrar los posibles animales que el usuario ha escrito
+     * @param nombreAnimalBuscado el nombre que el usuario ha escrito iremos comprobando la lista de animales y en caso de que coincidan
+     * las palabras lo metermos en otra lista de animales encontrados. Finalmente mostraremos esta última en un recycler
+     */
     fun buscarAnimal(nombreAnimalBuscado:String){
         AnimalesEncontrados.clear()
         for (animal in listaAnimales){

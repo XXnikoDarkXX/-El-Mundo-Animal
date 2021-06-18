@@ -20,16 +20,16 @@ private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
 /**
- * A simple [Fragment] subclass.
- * Use the [FragmentLoginAdministrador.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment de login administrador, tendremos una validacion de formulario,
+ * En caso de loguearnos nos lleva a la actividad controlPeticiones de  animales
+ *
  */
 class FragmentLoginAdministrador : Fragment() {
     // TODO: Rename and change types of parameters
 
-    lateinit var txtInputUser: TextInputEditText
-    lateinit var txtInputPassAdmin:TextInputEditText
-    lateinit var btnAceptar:Button
+    lateinit var txtInputUser: TextInputEditText//usuario
+    lateinit var txtInputPassAdmin:TextInputEditText//contraseña
+    lateinit var btnAceptar:Button//boton aceptar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +38,10 @@ class FragmentLoginAdministrador : Fragment() {
         }
     }
 
+    /**
+     * Desde aqui comprobaremos y validaremos el formulario
+     * mostraremos msj en caso de equivocarse con el login o lo llevaremos a la actividad de control
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

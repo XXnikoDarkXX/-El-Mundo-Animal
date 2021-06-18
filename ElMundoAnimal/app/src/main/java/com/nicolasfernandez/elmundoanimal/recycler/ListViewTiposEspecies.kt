@@ -14,7 +14,11 @@ import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.actividades.SeccionAnimales
 import com.nicolasfernandez.elmundoanimal.fragments.Inicio
 
-
+/**
+ * ListView para mostrar los diferentes tipos de especies que hay en el fragment Inicio
+ * @param fragmentActivity Fragmento de inicio
+ * @param datos arrayList con los nombres de las especies
+ */
 class ListViewTiposEspecies(val fragmentActivity: Inicio, val datos: ArrayList<String>) : BaseAdapter() {
     override fun getCount(): Int {
         return datos.size

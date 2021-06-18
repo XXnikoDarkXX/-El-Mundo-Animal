@@ -21,14 +21,16 @@ import com.nicolasfernandez.elmundoanimal.constantes.Database
 
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
 
-
+/**
+ * Clase inicial al empezar la aplicacion desde aquí podremos realizar actividades de login/registro de la app
+ */
 class MainActivity : AppCompatActivity() {
     private val GOOGLE_SIGN_IN = 123 // Request code for signing in with Google
-    private val btnGoogle:Button by lazy { findViewById<Button>(R.id.inicioGoogle) }
-    private val btnEmail:Button by lazy { findViewById<Button>(R.id.inicioEmail) }
-    private val txtInfo:TextView by lazy { findViewById<TextView>(R.id.txtCuenta) }
-    private val txtRegistro:TextView by lazy { findViewById<TextView>(R.id.txtRegistro) }
-    private val txtRecuperarContrasenia:TextView by lazy { findViewById<TextView>(R.id.txtRecuperarContrasenia) }
+    private val btnGoogle:Button by lazy { findViewById<Button>(R.id.inicioGoogle) }//Referencia al boton para login google
+    private val btnEmail:Button by lazy { findViewById<Button>(R.id.inicioEmail) }//Referencia al botón para login con email
+    private val txtInfo:TextView by lazy { findViewById<TextView>(R.id.txtCuenta) }//Referencia  no tienes cuenta
+    private val txtRegistro:TextView by lazy { findViewById<TextView>(R.id.txtRegistro) }//variable privata txt del registro
+    private val txtRecuperarContrasenia:TextView by lazy { findViewById<TextView>(R.id.txtRecuperarContrasenia) }//txt de contraseña
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Funcion para ir a la actividad de Registro
+     * @param view vista en este caso será un botón
      */
     fun irRegistro(view: View) {
 
@@ -46,6 +49,10 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    /**
+     * Funcion para llamar al intent de login con google usando nuestro toquen configurado
+     * @param view vista en este caso un boton
+     */
     fun loginGoogle(view: View) {
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestIdToken("365537516760-o045mide23gu6dsq8pef9up1avtsjnfj.apps.googleusercontent.com")
                 .requestEmail()
@@ -58,7 +65,12 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
+    /**
+     * Funcion para realizar el login con google mediante un request codigo
+     * @param requestCode codigo el cual se compara con GOOGLE_SIGN_IN
+     * @param resultCode igualmente hacemos la misma comprobacion que requestCode
+     * @param data datos
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         super.onActivityResult(requestCode, resultCode, data)
@@ -78,6 +90,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Funcion para autenticar el login con firebaser usando auth de google
+     * @param googleAccount cuenta la cual hemos hecho el login
+     * Si el login fue correcto tendremos en nuestra contante Database firebaseAuth la cuenta logeada
+     */
     private fun firebaseAuthWithGoogle(googleAccount: GoogleSignInAccount) {
         val credential= GoogleAuthProvider.getCredential(googleAccount.idToken, null)
         firebaseAuth.signInWithCredential(credential)
@@ -94,6 +111,7 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Funcion para ir a la actividad de Login Email
+     * @param view vista en este caso el botón
      */
     fun irALogInEmail(view: View) {
 
@@ -103,6 +121,8 @@ class MainActivity : AppCompatActivity() {
 
     /**
      * Funcion para cuando abra la app verifique que esta logueado
+     * Mediante esta función comprobamos si existe el usuario comprobandole en la bbdd o ya esta logueada y pasaría a la pantalla
+     * de carga
      */
     fun verificarLoginUsuario(){
 
@@ -132,6 +152,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Función para recuperar la contrasenia de la cuenta
+     * @param view vista en este caso un boton
+      */
     fun clickRecuperarContrasenia(view: View) {
         startActivity(Intent(this, RecuperarContrasenia::class.java))
 

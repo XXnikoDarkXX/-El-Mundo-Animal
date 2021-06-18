@@ -10,9 +10,13 @@ import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.constantes.Database
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 
+/**
+ * Actividad para recuperar la contraseña del usuario
+ * enviaremos al correo elegido el enlace de recuperacion
+ */
 class RecuperarContrasenia : AppCompatActivity() {
 
-    private val editTextResetearContrasenia: EditText by lazy { findViewById<EditText>(R.id.editTextResetearContrasenia) }
+    private val editTextResetearContrasenia: EditText by lazy { findViewById<EditText>(R.id.editTextResetearContrasenia) }//editText de reseteo de contraseña
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +26,10 @@ class RecuperarContrasenia : AppCompatActivity() {
 
     }
 
+    /**
+     * Funcion para enviar al correo escrito las instrucciones de reseteo
+     * @param view boton
+     */
     fun clickEnviarReseteoContrasenia(view: View) {
         if (!editTextResetearContrasenia.text.toString().equals("")){
             var auth = Database.firebaseAuth

@@ -9,6 +9,9 @@ import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.constantes.Database
 
+/**
+ * Actividad carga o splash  para la aplicacion, se suele usar al principio de la app al logear
+ */
 class Carga : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -16,27 +19,16 @@ class Carga : AppCompatActivity() {
         var bundle: Bundle? = this.intent.extras
         var info1: String? = bundle?.getString("Principal")
         var info2: String? = bundle?.getString("Login")
-        var loginGoogle:String? = bundle?.getString("loginGoogle")
 
 
 
         if (info1.equals("Principal")) {
-            /*val handler = Handler()
-            handler.postDelayed({
-
-            }, 3000)
-            */
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, Principal::class.java))
             }, 3000)
 
         }
         if (info2.equals("Login")) {
-            /* val handler = Handler()
-             handler.postDelayed({
-             }, 3000)
-
-             */
             Handler(Looper.getMainLooper()).postDelayed({
                 startActivity(Intent(this, Principal::class.java))
             }, 3000)

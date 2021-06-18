@@ -9,6 +9,11 @@ import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.fragments.FragmentJugar
 
+/**
+ * List view para mostrar el top 5 de usuarios del fragment jugar
+ * @param fragmentActivity Fragment de tipo jugar
+ * @param datos array con los usuarios a mostrar
+ */
     class ListViewRankingTop(val fragmentActivity: FragmentJugar, val datos: Array<Usuario>) : BaseAdapter() {
     override fun getCount(): Int {
        return datos.size

@@ -11,9 +11,13 @@ import com.nicolasfernandez.elmundoanimal.constantes.Database
 import com.nicolasfernandez.elmundoanimal.recycler.ControlPeticionAdapter
 import com.nicolasfernandez.elmundoanimal.recycler.SeccionAnimalesAdapter
 
+/**
+ * Actividad de seccion de animales, en esta actividad mostraremos todos los animales segun sea el tipo del animal
+ * ejem si elegimos de la lista mamiferos nos mostrara todos los mamiferos que hay en la bbdd
+ */
 class SeccionAnimales : AppCompatActivity() {
-    val recyclerSeccionAnimales: RecyclerView by lazy { findViewById(R.id.recyclerSeccion) }
-    val txtNombreSeccion:TextView by lazy { findViewById<TextView>(R.id.txtNombreSeccion) }
+    val recyclerSeccionAnimales: RecyclerView by lazy { findViewById(R.id.recyclerSeccion) }//recycler donde mostraremos los animales
+    val txtNombreSeccion:TextView by lazy { findViewById<TextView>(R.id.txtNombreSeccion) }//txtNombre de los tipos de animales
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_seccion_animales)
@@ -25,6 +29,11 @@ class SeccionAnimales : AppCompatActivity() {
         }
 
     }
+
+    /**
+     * Funcion para traer a la lista los animales de la bbdd
+     * @param especie tipo de animal el cual usaremos para buscar la bbdd
+     */
     fun traerPeticionesAnimales( especie:String){
         val context = this
         var animales: ArrayList<Animal> = ArrayList<Animal>()

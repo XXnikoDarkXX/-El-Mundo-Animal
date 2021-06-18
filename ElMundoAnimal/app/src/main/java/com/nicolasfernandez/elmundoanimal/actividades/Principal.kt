@@ -13,15 +13,19 @@ import com.nicolasfernandez.elmundoanimal.fragments.FragmentJugar
 import com.nicolasfernandez.elmundoanimal.fragments.FragmentPerfil
 import com.nicolasfernandez.elmundoanimal.fragments.Inicio
 
+/**
+ * Actividad Principal es el contendor que vemos despues de logearnos donde tendremos una barra inferior con las diferentes secciones
+ * tambien la navegacion entre fragments de la aplicacion
+ */
 class Principal : AppCompatActivity() {
-    companion object{val selfer=this}
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal)
 
         traerNombre()
 
-        val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
+        val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)//Barra inferior
 
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         val inicio = Inicio.newInstance()
@@ -29,6 +33,11 @@ class Principal : AppCompatActivity() {
 
 
     }
+
+    /**
+     * Funcion para navegar entre fragments pulsando al incono de cada seccion de la barra inferior
+     * mediante un when (switch)  comprobaremos que fragment debemos inflar al contenedor de la actividad Principal
+     */
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigationInicio -> {
@@ -51,7 +60,8 @@ class Principal : AppCompatActivity() {
     }
 
     /**
-     * Funcion para abrir fragmentos desde el menu
+     * Funcion para abrir fragmentos desde la barra inferior
+     * @param fragment fragment pasado por parametros que queremos mostrar
      */
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
@@ -62,7 +72,8 @@ class Principal : AppCompatActivity() {
 
 
     /**
-     * Funcion para recoger el nombre de labdd
+     * Funcion para recoger el nombre de usuario labdd
+     * mostraremos un toast dando la bienvenida al usuario
      */
     fun traerNombre(){
 

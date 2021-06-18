@@ -22,20 +22,19 @@ import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebase
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [FragmentPerfil.newInstance] factory method to
- * create an instance of this fragment.
+ * Fragment de perfil el cual tendremos acceso a las diferentes opciones del usuario
+ *
  */
 class FragmentPerfil : Fragment() {
-    lateinit var txtNombrePerfil :TextView
-    lateinit var txtNicknamePerfil:TextView
-    lateinit var txtEmailPerfil: TextView
-    lateinit var usuario:Usuario
-    lateinit var cardView7:CardView
-    lateinit var cardView8:CardView
-    lateinit var cardView9:CardView
-    lateinit var cardView10:CardView
-    lateinit var pgCarga:ProgressBar
+    lateinit var txtNombrePerfil :TextView//nombre del usuario
+    lateinit var txtNicknamePerfil:TextView//nick del usuario
+    lateinit var txtEmailPerfil: TextView//email del usuario
+    lateinit var usuario:Usuario//el usuario
+    lateinit var cardView7:CardView//card
+    lateinit var cardView8:CardView//card
+    lateinit var cardView9:CardView//card
+    lateinit var cardView10:CardView//card
+    lateinit var pgCarga:ProgressBar//loading
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -43,6 +42,9 @@ class FragmentPerfil : Fragment() {
         }
     }
 
+    /**
+     * Desde aqui usaremos las diferentes funciones / variables para mostrar las diferentes opciones
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -118,6 +120,7 @@ class FragmentPerfil : Fragment() {
 
     /**
      * Funcion para finalizar la sesion del usuario
+     * y volvemos a la primera ventana de la aplicacion
      */
     fun finalizarSesion(){
         firebaseAuth.signOut()
@@ -126,6 +129,7 @@ class FragmentPerfil : Fragment() {
 
     /**
      * Funcion para recoger los datos de un usuario de la bbdd
+     * y mostraremos las diferentes opciones del fragmentPerfil
      */
     fun traerUsuario(){
 

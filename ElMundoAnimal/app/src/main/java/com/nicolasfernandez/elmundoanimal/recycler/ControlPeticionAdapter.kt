@@ -16,6 +16,9 @@ import com.nicolasfernandez.elmundoanimal.actividades.Principal
 import com.nicolasfernandez.elmundoanimal.clases.Animal
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 
+/**
+ * Adapter para el control de peticiones de animales, desde aqui podremos añadir y borrar de la bbdd peticiones animales
+ */
 class ControlPeticionAdapter(val contexto:ControlPeticionesAnimales,val datos:ArrayList<Animal>):RecyclerView.Adapter<ControlPeticionesViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ControlPeticionesViewHolder {
         return ControlPeticionesViewHolder(

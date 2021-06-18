@@ -8,16 +8,23 @@ import android.widget.EditText
 import android.widget.TextView
 import com.nicolasfernandez.elmundoanimal.R
 
+/**
+ * Actividad para enviar un correo electronico al creado de la aplicación
+ */
 class EnviarCorreo : AppCompatActivity() {
 
-    val editTextAsunto: EditText by lazy { findViewById<EditText>(R.id.editTextAsunto) }
-    val editTextContenido: EditText by lazy { findViewById<EditText>(R.id.editTextContenido) }
+    val editTextAsunto: EditText by lazy { findViewById<EditText>(R.id.editTextAsunto) }//editText del asunto
+    val editTextContenido: EditText by lazy { findViewById<EditText>(R.id.editTextContenido) }//editText del contenido a enviar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_enviar_correo)
     }
 
+    /**
+     * Funcion para enviar el correo electronico mediante el intent sacaremos la opcion de mostrar la aplicacion de correos
+     * @param view boton
+     */
     fun clickEnviarEmail(view: View) {
         if (!(editTextAsunto.text.toString().equals("")&&editTextContenido.text.toString().equals(""))){
             val it:Intent = Intent(Intent.ACTION_SEND)

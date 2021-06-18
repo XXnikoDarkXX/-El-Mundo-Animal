@@ -18,17 +18,17 @@ import com.nicolasfernandez.elmundoanimal.recycler.SeccionAnimalesAdapter
 
 
 /**
- * A simple [Fragment] subclass.
- * Use the [Inicio.newInstance] factory method to
- * create an instance of this fragment.
+ *
+ * Fragment del inicio donde mostraremos la actividad de wikipedia
+ *
  */
 class Inicio : Fragment() {
-    lateinit var  listaAnimales:ArrayList<Animal>
-    lateinit var btnAyuda: Button;
-    lateinit var btnAniadirAnimales:Button
-    lateinit var btnControl:Button
-    lateinit var buscador:EditText
-    lateinit var btnBuscar:Button
+    lateinit var  listaAnimales:ArrayList<Animal>//arrayList de animales
+    lateinit var btnAyuda: Button;//btn para ir ayuda de la aplicacion
+    lateinit var btnAniadirAnimales:Button//btn para ir añadir animales
+    lateinit var btnControl:Button// btn para ir al control de animales
+    lateinit var buscador:EditText//buscador
+    lateinit var btnBuscar:Button//Btn para buscar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,6 +37,9 @@ class Inicio : Fragment() {
         }
     }
 
+    /**
+     * Desde aqui mostraremos y iniciamos las diferentes actividades que hay en inicio
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -137,7 +140,10 @@ class Inicio : Fragment() {
             }
     }
 
-
+    /**
+     * Funcon para obtener todos los animales de las diferentes colecciones de la bbdd
+     * lo insertaremos en la lista listaAnimales
+     */
     fun obtenerTodosLosAnimales() {
 
         val array: ArrayList<String> = ArrayList()

@@ -1,5 +1,6 @@
 package com.nicolasfernandez.elmundoanimal.actividades
 
+import android.app.AlertDialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,8 +12,11 @@ import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.constantes.Database
 
+/**
+ * Actividad para registrar nombre y nick en caso de loguearse por primera vez mediante google
+ */
 class CrearNombreNickGoogle : AppCompatActivity() {
-    val editTextNickName: EditText by lazy { findViewById(R.id.editTextNickName) }
+    val editTextNickName: EditText by lazy { findViewById(R.id.editTextNickName) }//Editext donde recogeremos el nick del usuario
     val editTextNombre: EditText by lazy { findViewById(R.id.editTextNombre) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,14 +25,23 @@ class CrearNombreNickGoogle : AppCompatActivity() {
 
     }
 
-
+    /**
+     * Funcion para registrar el nombre y el nick del usuario a la bbdd de firestore creando tambien un usuario con el correo
+     * del usuario
+     * @param view boton
+     */
     fun clickRegistroGoogle(view: View) {
 
         if (editTextNickName.text.toString().equals("") || editTextNombre.text.toString()
                 .equals("")
         ) {
 
-
+            val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+            builder.setTitle("Campos vacios")
+            builder.setMessage("Uno o mas campos estan vacios")
+            builder.setPositiveButton("Aceptar", null)
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
 
         } else {
 

@@ -10,6 +10,11 @@ import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.actividades.FichaAnimal
 import com.nicolasfernandez.elmundoanimal.clases.Animal
 
+/**
+ * Adapter para mostrar la lista de animales que contenga
+ * @param contexto de la actividad a la que se refiere
+ * @param datos lista de tipo Animal con todos los animales a mostar
+ */
 class SeccionAnimalesAdapter (val contexto:Activity, val datos:ArrayList<Animal>):RecyclerView.Adapter<SeccionAnimalesViewHolder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SeccionAnimalesViewHolder {
        return SeccionAnimalesViewHolder(contexto.layoutInflater.inflate(R.layout.elementos_seccion_animales,parent,false))

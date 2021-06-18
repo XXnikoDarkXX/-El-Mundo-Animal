@@ -5,9 +5,11 @@ import android.os.Bundle
 import android.widget.TextView
 import com.nicolasfernandez.elmundoanimal.R
 
+/**
+ * Actividad para informar sobre la ayuda de la aplicacion
+ */
 class ActividadAyuda : AppCompatActivity() {
-    val txtQueEs: TextView by lazy { findViewById<TextView>(R.id.txtQueEsjUEGO) }
-    val txtDescripcion2: TextView by lazy { findViewById<TextView>(R.id.txtQueEsjUEGO) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
 

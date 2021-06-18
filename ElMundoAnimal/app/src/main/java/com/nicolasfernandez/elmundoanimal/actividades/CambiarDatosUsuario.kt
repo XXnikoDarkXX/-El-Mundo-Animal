@@ -17,6 +17,9 @@ import com.nicolasfernandez.elmundoanimal.constantes.Database
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 
+/**
+ * Actividad para poder cambiar datos del usuario asi como poder borrarlo
+ */
 class CambiarDatosUsuario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +29,8 @@ class CambiarDatosUsuario : AppCompatActivity() {
 
     /**
      * Funcion para cambiar datos del perfil consultando a la bbdd
+     * @param view vista en este caso el boton
+     * /tenemos varios filtros en caso de que solo queramos cambiar un dato o esten los campos vacios.
      */
     fun cambiar(view: View) {
 
@@ -113,6 +118,7 @@ class CambiarDatosUsuario : AppCompatActivity() {
      * Funcion para eliminar un usuario de nuestra aplicacion mediante diferentes consultas
      * Para ello hemos comprobado que las contraseñas puestas en las actividad sean las mismas que el usuario al que vamos a borrar
      * Tambien comprobamos las credenciales del usuario para luego hacer un borrado
+     * @param view vista en este caso un boton
      */
     fun eliminar(view: View) {
         val pass1: EditText = findViewById<EditText>(R.id.editTextPassActual)

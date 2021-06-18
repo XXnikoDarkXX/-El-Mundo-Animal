@@ -13,13 +13,17 @@ import com.nicolasfernandez.elmundoanimal.R
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseAuth
 import com.nicolasfernandez.elmundoanimal.constantes.Database.Companion.firebaseDB
 
+/**
+ * Actividad para registrar un usario, tendremos una validacion de formulario
+ * y tambien insertaremos los datos del usuario en la bbdd
+ */
 class Registro : AppCompatActivity() {
-    val nombre:EditText by lazy { findViewById<EditText>(R.id.nombreCompleto) }
-    val nickname:EditText by lazy { findViewById<EditText>(R.id.nickname) }
-    val email:EditText by lazy { findViewById<EditText>(R.id.loginEmail) }
-    val contrasenia:EditText by lazy { findViewById<EditText>(R.id.loginContraseña) }
-    val repiteContrasenia:EditText by lazy { findViewById<EditText>(R.id.repiteContrasenia) }
-   lateinit var auth:FirebaseAuth
+    val nombre:EditText by lazy { findViewById<EditText>(R.id.nombreCompleto) }//nombre del usuario
+    val nickname:EditText by lazy { findViewById<EditText>(R.id.nickname) }//nick del usuariio
+    val email:EditText by lazy { findViewById<EditText>(R.id.loginEmail) }//email del usuario
+    val contrasenia:EditText by lazy { findViewById<EditText>(R.id.loginContraseña) }//contraseña del usuario
+    val repiteContrasenia:EditText by lazy { findViewById<EditText>(R.id.repiteContrasenia) }//repite la contraseña
+   lateinit var auth:FirebaseAuth//firebaseAuth que usaremos
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registro)
@@ -27,6 +31,11 @@ class Registro : AppCompatActivity() {
         auth= FirebaseAuth.getInstance()
     }
 
+    /**
+     * Funcion para realizar el registro del usuario comprobando y validando los campos, añadiendo los datos del usuasrio a la bbdd
+     * y creando el usuario de firestore
+     * @param view boton
+     */
     fun Registrar(view: View) {
 
         val ema:String=email.text.toString()

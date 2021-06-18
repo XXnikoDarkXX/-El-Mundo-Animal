@@ -24,18 +24,21 @@ import com.nicolasfernandez.elmundoanimal.clases.Usuario
 import com.nicolasfernandez.elmundoanimal.constantes.APIConstantes
 import com.nicolasfernandez.elmundoanimal.constantes.Database
 
+/**
+ * Actividad de la ficha de un animal, aqui mostraremos los diferentes animales que el usuario elija
+ */
 class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
-    val txtDescripcion: TextView by lazy { findViewById<TextView>(R.id.txtDescripcion) }
-    val imgFoto: ImageView by lazy { findViewById<ImageView>(R.id.imgFoto) }
-    val txtTipo: TextView by lazy { findViewById<TextView>(R.id.txtTipo) }
-    val txtNombre: TextView by lazy { findViewById<TextView>(R.id.txtNombreAnimal) }
-    val cartaContenido: CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal) }
-    val cartaVideo: CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal2) }
+    val txtDescripcion: TextView by lazy { findViewById<TextView>(R.id.txtDescripcion) }//la descripcion del animal
+    val imgFoto: ImageView by lazy { findViewById<ImageView>(R.id.imgFoto) }//Imagen del animal
+    val txtTipo: TextView by lazy { findViewById<TextView>(R.id.txtTipo) }//que tipo es el animal
+    val txtNombre: TextView by lazy { findViewById<TextView>(R.id.txtNombreAnimal) }//nombre del animal
+    val cartaContenido: CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal) }//card donde contiene los datos de animal
+    val cartaVideo: CardView by lazy { findViewById<CardView>(R.id.cardFichaAnimal2) }// card donde contiene el video del animal
 
-    val loading: ProgressBar by lazy { findViewById<ProgressBar>(R.id.cargaFicha) }
-    lateinit var animal: Animal
-    var animalEncontrado:Boolean = false
-    val reproductor: YouTubePlayerView by lazy { findViewById<YouTubePlayerView>(R.id.reproductor) }
+    val loading: ProgressBar by lazy { findViewById<ProgressBar>(R.id.cargaFicha) }//loading
+    lateinit var animal: Animal//objeto animal que usaremos para cargar el animal elegido y mostrarlo en la ficha
+    var animalEncontrado:Boolean = false//boolean de control para saber si hemos encontrado el animal
+    val reproductor: YouTubePlayerView by lazy { findViewById<YouTubePlayerView>(R.id.reproductor) }//reproductor de youtube
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ficha_animal)
@@ -72,6 +75,12 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
 
     }
 
+    /**
+     * Funcion para cargar el video de yt
+     * @param p0 reproductor
+     * @param p1 donde cargaremos la clave del video de YT
+     * @param p2 booleano para saber si ha fallado o no
+     */
     override fun onInitializationSuccess(
         p0: YouTubePlayer.Provider?,
         p1: YouTubePlayer?,
@@ -92,6 +101,9 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
         }
     }
 
+    /**
+     * Funcion en caso de que falle la carga del video
+     */
     override fun onInitializationFailure(
         p0: YouTubePlayer.Provider?,
         p1: YouTubeInitializationResult?
@@ -99,8 +111,15 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
         TODO("Not yet implemented")
     }
 
+    /**
+     * Funcion para sacar la ficha del animal elegido de la bbdd
+     * @param coleccion donde se encuentra el animal esto lo sabremos gracias al la variable tipo del animal
+     * @param documento nombre del animal
+     * mediante esta funcion encontraremos de la bbdd de firestore el animal y la cargaremos, completaremos la ficha con este ultimo
+     * incluyendo el video llamando a las demas funciones
+     *
+     */
     fun sacarFichaAnimal(coleccion: String, documento: String) {
-
 
         val docRef = Database.firebaseDB.collection(coleccion).document(documento)
         docRef.get().addOnSuccessListener { documentSnapshot ->
@@ -125,7 +144,10 @@ class FichaAnimal : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
 
     }
 
-
+    /**
+     * Funcion para buscar animal con el nombre de todas las colecciones
+     * @param nombre del animal
+     */
     fun buscarAnimal(nombre: String) {
 
         val array: ArrayList<String> = ArrayList()
